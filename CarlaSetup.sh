@@ -5,7 +5,7 @@ set -e
 interactive=0
 skip_prerequisites=0
 launch=0
-python_root=
+python_root="$HOME/carla_stripped/carla_dev/bin"
 
 workspace_path="$(dirname $(realpath "${BASH_SOURCE[-1]}"))"
 echo "workspace_path=$workspace_path"
@@ -105,7 +105,7 @@ else
     pushd ..
     if [ -z "$GIT_LOCAL_CREDENTIALS" ]
     then
-        UE5_URL=https://github.com/CarlaUnreal/UnrealEngine.git
+        UE5_URL=git@github.com:CarlaUnreal/UnrealEngine.git
     else
         GIT_CREDENTIALS_INFO=(${GIT_LOCAL_CREDENTIALS//@/ })
         GIT_LOCAL_USER=${GIT_CREDENTIALS_INFO[0]}

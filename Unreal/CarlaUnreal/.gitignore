@@ -14,9 +14,11 @@ Plugins/Carla/Intermediate
 Plugins/Carla/Saved
 
 /Content
+!/Content/Carla/Maps/
 Config/CarlaSettings.ini
 Config/DefaultEditor.ini
 Config/CarSimConfig.ini
+
 
 *.code-workspace
 .idea

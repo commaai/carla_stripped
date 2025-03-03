@@ -14,8 +14,6 @@ Plugins/Carla/Intermediate
 Plugins/Carla/Saved
 
 /Content/*
-!/Content/Carla/
-!/Content/Carla/Maps/
 Config/CarlaSettings.ini
 Config/DefaultEditor.ini
 Config/CarSimConfig.ini

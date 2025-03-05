@@ -95,6 +95,9 @@ else
         Carla
 fi
 
+# -- Copy additional map into Content
+cp $workspace_path/Extra\ Maps/stripped_2_Opt.umap $workspace_path/Unreal/CarlaUnreal/Content/Carla/Maps
+
 # -- DOWNLOAD + BUILD UNREAL ENGINE --
 if [ ! -z $CARLA_UNREAL_ENGINE_PATH ] && [ -d $CARLA_UNREAL_ENGINE_PATH ]; then
     echo "Found CARLA Unreal Engine at $CARLA_UNREAL_ENGINE_PATH"

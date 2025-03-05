@@ -5,7 +5,7 @@ set -e
 interactive=0
 skip_prerequisites=0
 launch=0
-python_root="$HOME/carla_stripped/carla_dev/bin"
+python_root="$HOME/xx/.venv/bin"
 
 workspace_path="$(dirname $(realpath "${BASH_SOURCE[-1]}"))"
 echo "workspace_path=$workspace_path"

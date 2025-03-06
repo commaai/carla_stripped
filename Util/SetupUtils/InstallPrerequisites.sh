@@ -1,5 +1,5 @@
 #!/bin/bash
-
+export PATH="$HOME/.local/bin:$PATH"
 set -e
 
 python_path_default='python3'
@@ -64,9 +64,8 @@ if [ "$python_path" == "python3" ]; then
 fi
 
 # -- INSTALL PYTHON PACKAGES --
-echo "Installing Python Packages..."
-$python_path -m pip install --upgrade pip
-$python_path -m pip install -r requirements.txt
+echo "Installing Python Packages with UV..."
+uv pip install -r requirements.txt --python $python_path
 
 # -- INSTALL CMAKE --
 check_cmake_version() {

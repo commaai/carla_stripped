@@ -4,7 +4,7 @@ set -e
 
 interactive=0
 skip_prerequisites=0
-launch=0
+launch=1
 python_root="$HOME/xx/.venv/bin"
 
 workspace_path="$(dirname $(realpath "${BASH_SOURCE[-1]}"))"

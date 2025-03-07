@@ -146,6 +146,18 @@ echo "CARLA Python API build+install succeeded."
 
 # -- POST-BUILD STEPS --
 if [ $launch -eq 1 ]; then
-    echo "Launching Carla - Unreal Editor..."
-    cmake --build Build --target launch
+    N=3
+    n=1
+    while [ $n -le $N ]; do
+        echo "Attempt $n at Launching Carla - Unreal Editor..."
+	if cmake --build Build --target launch; then
+	    echo "Build succeeded!"
+	    exit 0
+	else
+	    n=$((n+1))
+	fi
+   done
+   echo "Build failed after $N attempts."
+   exit 1
+
 fi

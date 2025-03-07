@@ -157,8 +157,8 @@ carla_add_custom_target (
   carla-python-api-install
   "Build & install the CARLA Python API"
   COMMAND
-    ${Python3_EXECUTABLE}
-      -m pip install
+    $ENV{HOME}/.local/bin/uv 
+      pip install
       -e ${CARLA_PYTHON_API_CARLA_PATH}
   WORKING_DIRECTORY
     ${CARLA_PYTHON_API_CARLA_PATH}

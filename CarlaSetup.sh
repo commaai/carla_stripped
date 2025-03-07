@@ -141,7 +141,7 @@ cmake -G Ninja -S . -B Build \
 echo "Building CARLA..."
 cmake --build Build
 echo "Installing Python API..."
-cmake --build Build --target carla-python-api-install
+sudo -E cmake --build Build --target carla-python-api-install
 echo "CARLA Python API build+install succeeded."
 
 # -- POST-BUILD STEPS --

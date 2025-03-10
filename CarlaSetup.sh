@@ -90,6 +90,7 @@ else
     git \
         -C $workspace_path/Unreal/CarlaUnreal/Content \
         clone \
+        --depth 1\
         -b ue5-dev \
         https://bitbucket.org/carla-simulator/carla-content.git \
         Carla
@@ -115,7 +116,7 @@ else
         GIT_LOCAL_TOKEN=${GIT_CREDENTIALS_INFO[1]}
         UE5_URL=https://$GIT_LOCAL_USER:$GIT_LOCAL_TOKEN@github.com/CarlaUnreal/UnrealEngine.git
     fi
-    git clone -b ue5-dev-carla $UE5_URL UnrealEngine5_carla
+    git clone --depth 1 -b ue5-dev-carla $UE5_URL UnrealEngine5_carla
     pushd UnrealEngine5_carla
     echo -e '\n#CARLA UnrealEngine5\nexport CARLA_UNREAL_ENGINE_PATH='$PWD >> ~/.bashrc
     export CARLA_UNREAL_ENGINE_PATH=$PWD

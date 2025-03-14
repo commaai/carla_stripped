@@ -140,7 +140,7 @@ cmake -G Ninja -S . -B Build \
     -DPython3_ROOT_DIR=${python_root} \
     -DCARLA_UNREAL_ENGINE_PATH=$CARLA_UNREAL_ENGINE_PATH
 echo "Building CARLA..."
-cmake --build Build
+sudo -E cmake --build Build
 echo "Installing Python API..."
 sudo -E cmake --build Build --target carla-python-api-install
 echo "CARLA Python API build+install succeeded."
@@ -151,7 +151,7 @@ if [ $launch -eq 1 ]; then
     n=1
     while [ $n -le $N ]; do
         echo "Attempt $n at Launching Carla - Unreal Editor..."
-	if cmake --build Build --target launch; then
+	if sudo -E cmake --build Build --target launch; then
 	    echo "Build succeeded!"
 	    exit 0
 	else

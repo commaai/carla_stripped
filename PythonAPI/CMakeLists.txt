@@ -116,7 +116,7 @@ file (
 if (ENABLE_PEP517)
   set (
     CARLA_PYTHON_API_BUILD_COMMAND
-    ${Python3_EXECUTABLE}
+    $ENV{HOME}/xx/.venv/bin/python3
     -m build
     --outdir ${CARLA_PYTHON_API_DIST_PATH}
     --wheel
@@ -130,7 +130,7 @@ else ()
   )
   set (
     CARLA_PYTHON_API_BUILD_COMMAND
-    ${Python3_EXECUTABLE}
+    $ENV{HOME}/xx/.venv/bin/python3
     setup.py
     bdist_wheel
     --dist-dir ${CARLA_PYTHON_API_DIST_PATH}
@@ -158,8 +158,7 @@ carla_add_custom_target (
   "Build & install the CARLA Python API"
   COMMAND
     $ENV{HOME}/.local/bin/uv 
-      pip install
-      -e ${CARLA_PYTHON_API_CARLA_PATH}
+      pip install -e ${CARLA_PYTHON_API_CARLA_PATH} --python $ENV{HOME}/xx/.venv/bin/python3
   WORKING_DIRECTORY
     ${CARLA_PYTHON_API_CARLA_PATH}
   VERBATIM

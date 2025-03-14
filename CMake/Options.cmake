@@ -217,11 +217,11 @@ carla_string_option (
 # Docs for UE5 build configurations:
 # https://docs.unrealengine.com/4.27/en-US/ProductionPipelines/DevelopmentSetup/BuildConfigurations/
 
-if (${CMAKE_BUILD_TYPE} STREQUAL "Debug")
+if ("${CMAKE_BUILD_TYPE}" STREQUAL "Debug")
   set (CARLA_UNREAL_PACKAGE_BUILD_TYPE_DEFAULT Debug)
-elseif (${CMAKE_BUILD_TYPE} STREQUAL "RelWithDebInfo")
+elseif ("${CMAKE_BUILD_TYPE}" STREQUAL "RelWithDebInfo")
   set (CARLA_UNREAL_PACKAGE_BUILD_TYPE_DEFAULT Development)
-elseif (${CMAKE_BUILD_TYPE} STREQUAL "Release")
+elseif ("${CMAKE_BUILD_TYPE}" STREQUAL "Release")
   set (CARLA_UNREAL_PACKAGE_BUILD_TYPE_DEFAULT Shipping)
 else ()
   carla_warning("Unexpected CMAKE_BUILD_TYPE \"${CMAKE_BUILD_TYPE}\". Unreal packages will default to Development. Manually override DEFAULT_PACKAGE_CONFIGURATION if this behavior is not desired.")

@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 // Copyright (c) 2025 Computer Vision Center (CVC) at the Universitat Autonoma
+=======
+// Copyright (c) 2024 Computer Vision Center (CVC) at the Universitat Autonoma
+>>>>>>> f676339c2 (added template for defaultgame.ini)
 // de Barcelona (UAB).
 //
 // This work is licensed under the terms of the MIT license.
@@ -29,8 +33,12 @@ namespace road {
         const double length,
         const JuncId junction_id,
         const RoadId predecessor,
+<<<<<<< HEAD
         const RoadId successor,
         const bool is_rht);
+=======
+        const RoadId successor);
+>>>>>>> f676339c2 (added template for defaultgame.ini)
 
     carla::road::LaneSection *AddRoadSection(
         carla::road::Road *road,
@@ -316,8 +324,12 @@ namespace road {
         const std::string lane_change,
         const double height,
         const std::string type_name,
+<<<<<<< HEAD
         const double type_width,
         const bool is_rht);
+=======
+        const double type_width);
+>>>>>>> f676339c2 (added template for defaultgame.ini)
 
     void CreateRoadMarkTypeLine(
         Lane *lane,
@@ -371,9 +383,12 @@ namespace road {
     /// Create the pointers between RoadSegments based on the ids.
     void CreatePointersBetweenRoadSegments();
 
+<<<<<<< HEAD
     /// Debug the built connections through the terminal.
     void DebugRoadConnections();
 
+=======
+>>>>>>> f676339c2 (added template for defaultgame.ini)
     /// Create the bounding boxes of each junction
     void CreateJunctionBoundingBoxes(Map &map);
 
@@ -399,7 +414,11 @@ namespace road {
     void CheckSignalsOnRoads(Map &map);
 
     /// Return the pointer to a lane object.
+<<<<<<< HEAD
     Lane *GetEdgeLanePointer(RoadId road_id, LaneId lane_id);
+=======
+    Lane *GetEdgeLanePointer(RoadId road_id, bool from_start, LaneId lane_id);
+>>>>>>> f676339c2 (added template for defaultgame.ini)
 
     /// Return a list of pointers to all lanes from a lane (using road and
     /// junction info).
@@ -408,7 +427,11 @@ namespace road {
         SectionId section_id,
         LaneId lane_id);
 
+<<<<<<< HEAD
     std::vector<std::pair<RoadId, const Lane *>> GetJunctionLanes(
+=======
+    std::vector<std::pair<RoadId, LaneId>> GetJunctionLanes(
+>>>>>>> f676339c2 (added template for defaultgame.ini)
         JuncId junction_id,
         RoadId road_id,
         LaneId lane_id);

@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 // Copyright (c) 2025 Computer Vision Center (CVC) at the Universitat Autonoma
+=======
+// Copyright (c) 2024 Computer Vision Center (CVC) at the Universitat Autonoma
+>>>>>>> f676339c2 (added template for defaultgame.ini)
 // de Barcelona (UAB).
 //
 // This work is licensed under the terms of the MIT license.
@@ -105,6 +109,7 @@ void Parameters::SetForceLaneChange(const ActorPtr &actor, const bool direction)
   force_lane_change.AddEntry(entry);
 }
 
+<<<<<<< HEAD
 void Parameters::SetKeepSlowLanePercentage(const ActorPtr &actor, const float percentage) {
 
   const auto entry = std::make_pair(actor->GetId(), percentage);
@@ -112,6 +117,14 @@ void Parameters::SetKeepSlowLanePercentage(const ActorPtr &actor, const float pe
 }
 
 
+=======
+void Parameters::SetKeepRightPercentage(const ActorPtr &actor, const float percentage) {
+
+  const auto entry = std::make_pair(actor->GetId(), percentage);
+  perc_keep_right.AddEntry(entry);
+}
+
+>>>>>>> f676339c2 (added template for defaultgame.ini)
 void Parameters::SetRandomLeftLaneChangePercentage(const ActorPtr &actor, const float percentage) {
 
   const auto entry = std::make_pair(actor->GetId(), percentage);
@@ -299,12 +312,21 @@ ChangeLaneInfo Parameters::GetForceLaneChange(const ActorId &actor_id) {
   return change_lane_info;
 }
 
+<<<<<<< HEAD
 float Parameters::GetKeepSlowLanePercentage(const ActorId &actor_id) {
 
   float percentage = -1.0f;
 
   if (perc_keep_slow_lane.Contains(actor_id)) {
     percentage = perc_keep_slow_lane.GetValue(actor_id);
+=======
+float Parameters::GetKeepRightPercentage(const ActorId &actor_id) {
+
+  float percentage = -1.0f;
+
+  if (perc_keep_right.Contains(actor_id)) {
+    percentage = perc_keep_right.GetValue(actor_id);
+>>>>>>> f676339c2 (added template for defaultgame.ini)
   }
 
   return percentage;

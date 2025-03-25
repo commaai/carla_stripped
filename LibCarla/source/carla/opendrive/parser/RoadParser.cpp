@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 // Copyright (c) 2025 Computer Vision Center (CVC) at the Universitat Autonoma
+=======
+// Copyright (c) 2024 Computer Vision Center (CVC) at the Universitat Autonoma
+>>>>>>> f676339c2 (added template for defaultgame.ini)
 // de Barcelona (UAB).
 //
 // This work is licensed under the terms of the MIT license.
@@ -58,7 +62,10 @@ namespace parser {
     JuncId junction_id;
     RoadId predecessor;
     RoadId successor;
+<<<<<<< HEAD
     bool is_rht;
+=======
+>>>>>>> f676339c2 (added template for defaultgame.ini)
     std::vector<RoadTypeSpeed> speed;
     std::vector<LaneOffset> section_offsets;
     std::vector<LaneSection> sections;
@@ -118,13 +125,18 @@ namespace parser {
     std::vector<Road> roads;
 
     for (pugi::xml_node node_road : xml.child("OpenDRIVE").children("road")) {
+<<<<<<< HEAD
       Road road { 0, "", 0.0, -1, 0, 0, true, {}, {}, {} };
+=======
+      Road road { 0, "", 0.0, -1, 0, 0, {}, {}, {} };
+>>>>>>> f676339c2 (added template for defaultgame.ini)
 
       // attributes
       road.id = node_road.attribute("id").as_uint();
       road.name = node_road.attribute("name").value();
       road.length = node_road.attribute("length").as_double();
       road.junction_id = node_road.attribute("junction").as_int();
+<<<<<<< HEAD
       std::string rule = node_road.attribute("rule") ? node_road.attribute("rule").value(): "RHT";
       if (rule == "RHT") {
         road.is_rht = true;
@@ -134,6 +146,9 @@ namespace parser {
         std::cout << "Detected rule '" << rule << "' for road '" << road.id << "'. Defaulting to RHT." << std::endl;
         road.is_rht = true;
       }
+=======
+
+>>>>>>> f676339c2 (added template for defaultgame.ini)
       // link
       pugi::xml_node link = node_road.child("link");
       if (link) {
@@ -302,8 +317,12 @@ namespace parser {
           r.length,
           r.junction_id,
           r.predecessor,
+<<<<<<< HEAD
           r.successor,
           r.is_rht);
+=======
+          r.successor);
+>>>>>>> f676339c2 (added template for defaultgame.ini)
 
       // type speed
       for (const auto& s : r.speed) {

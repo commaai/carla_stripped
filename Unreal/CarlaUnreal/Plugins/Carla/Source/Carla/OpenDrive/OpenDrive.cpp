@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 // Copyright (c) 2025 Computer Vision Center (CVC) at the Universitat Autonoma
+=======
+// Copyright (c) 2024 Computer Vision Center (CVC) at the Universitat Autonoma
+>>>>>>> f676339c2 (added template for defaultgame.ini)
 // de Barcelona (UAB).
 //
 // This work is licensed under the terms of the MIT license.
@@ -22,6 +26,11 @@ FString UOpenDrive::FindPathToXODRFile(const FString &InMapName){
 
 #if WITH_EDITOR
     {
+<<<<<<< HEAD
+=======
+      // When playing in editor the map name gets an extra prefix, here we
+      // remove it.
+>>>>>>> f676339c2 (added template for defaultgame.ini)
       FString CorrectedMapName = MapName;
       constexpr auto PIEPrefix = TEXT("UEDPIE_0_");
       CorrectedMapName.RemoveFromStart(PIEPrefix);
@@ -29,12 +38,20 @@ FString UOpenDrive::FindPathToXODRFile(const FString &InMapName){
     }
 #endif // WITH_EDITOR
 
+<<<<<<< HEAD
   FString XODRFileName = MapName + TEXT(".xodr");
+=======
+  MapName += TEXT(".xodr");
+>>>>>>> f676339c2 (added template for defaultgame.ini)
 
   const FString DefaultFilePath =
       FPaths::ProjectContentDir() +
       TEXT("Carla/Maps/OpenDrive/") +
+<<<<<<< HEAD
       XODRFileName;
+=======
+      MapName;
+>>>>>>> f676339c2 (added template for defaultgame.ini)
 
   auto &FileManager = IFileManager::Get();
 
@@ -47,11 +64,16 @@ FString UOpenDrive::FindPathToXODRFile(const FString &InMapName){
   FileManager.FindFilesRecursive(
       FilesFound,
       *FPaths::ProjectContentDir(),
+<<<<<<< HEAD
       *XODRFileName,
+=======
+      *MapName,
+>>>>>>> f676339c2 (added template for defaultgame.ini)
       true,
       false,
       false);
 
+<<<<<<< HEAD
   if (FilesFound.Num() > 0)
   {
     return FilesFound[0u];
@@ -81,12 +103,20 @@ FString UOpenDrive::FindPathToXODRFile(const FString &InMapName){
   }
 
   return FString{};
+=======
+  return FilesFound.Num() > 0 ? FilesFound[0u] : FString{};
+>>>>>>> f676339c2 (added template for defaultgame.ini)
 }
 
 FString UOpenDrive::GetXODR(const UWorld *World)
 {
   auto MapName = World->GetMapName();
 
+<<<<<<< HEAD
+=======
+  // When playing in editor the map name gets an extra prefix, here we
+  // remove it.
+>>>>>>> f676339c2 (added template for defaultgame.ini)
   #if WITH_EDITOR
   {
     FString CorrectedMapName = MapName;
@@ -97,10 +127,15 @@ FString UOpenDrive::GetXODR(const UWorld *World)
   #endif // WITH_EDITOR
 
   ACarlaGameModeBase* GameMode = UCarlaStatics::GetGameMode(World);
+<<<<<<< HEAD
+=======
+
+>>>>>>> f676339c2 (added template for defaultgame.ini)
   auto MapDir = GameMode->GetFullMapPath();
   const auto FolderDir = MapDir + "/OpenDrive/";
   const auto FileName = MapDir.EndsWith(MapName) ? "*" : MapName;
 
+<<<<<<< HEAD
   TArray<FString> Files;
   IFileManager::Get().FindFilesRecursive(Files, *FolderDir, *FString(FileName + ".xodr"), true, false, false);
 
@@ -110,10 +145,17 @@ FString UOpenDrive::GetXODR(const UWorld *World)
     IFileManager::Get().FindFilesRecursive(Files, *PluginFolder, *FString(FileName + ".xodr"), true, false, false);
   }
 
+=======
+  // Find all the xodr and bin files from the map
+  TArray<FString> Files;
+  IFileManager::Get().FindFilesRecursive(Files, *FolderDir, *FString(FileName + ".xodr"), true, false, false);
+
+>>>>>>> f676339c2 (added template for defaultgame.ini)
   FString Content;
 
   if (!Files.Num())
   {
+<<<<<<< HEAD
     UE_LOG(LogCarla, Error, TEXT("No OpenDrive file found for map '%s'"), *MapName);
   }
   else if (FFileHelper::LoadFileToString(Content, *Files[0]))
@@ -123,6 +165,17 @@ FString UOpenDrive::GetXODR(const UWorld *World)
   else
   {
     UE_LOG(LogCarla, Error, TEXT("Failed to load OpenDrive file '%s'"), *Files[0]);
+=======
+    UE_LOG(LogTemp, Error, TEXT("Failed to find OpenDrive file for map '%s'"), *MapName);
+  }
+  else if (FFileHelper::LoadFileToString(Content, *Files[0]))
+  {
+    UE_LOG(LogTemp, Log, TEXT("Loaded OpenDrive file '%s'"), *Files[0]);
+  }
+  else
+  {
+    UE_LOG(LogTemp, Error, TEXT("Failed to load OpenDrive file '%s'"), *Files[0]);
+>>>>>>> f676339c2 (added template for defaultgame.ini)
   }
 
   return Content;
@@ -232,7 +285,11 @@ UOpenDriveMap *UOpenDrive::LoadCurrentOpenDriveMap(const UObject *WorldContextOb
     return nullptr;
 
   return LoadOpenDriveMap(World->GetMapName());
+<<<<<<< HEAD
 
+=======
+  
+>>>>>>> f676339c2 (added template for defaultgame.ini)
 #else
 
   return nullptr;

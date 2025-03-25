@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 // Copyright (c) 2025 Computer Vision Center (CVC) at the Universitat Autonoma
+=======
+// Copyright (c) 2024 Computer Vision Center (CVC) at the Universitat Autonoma
+>>>>>>> f676339c2 (added template for defaultgame.ini)
 // de Barcelona (UAB).
 //
 // This work is licensed under the terms of the MIT license.
@@ -26,8 +30,12 @@ static int SCENE_CAPTURE_COUNTER = 0u;
 // =============================================================================
 
 // Local namespace to avoid name collisions on unit builds.
+<<<<<<< HEAD
 namespace SceneCaptureSensor_local_ns
 {
+=======
+namespace SceneCaptureSensor_local_ns {
+>>>>>>> f676339c2 (added template for defaultgame.ini)
 
   static void SetCameraDefaultOverrides(USceneCaptureComponent2D &CaptureComponent2D);
 
@@ -45,7 +53,11 @@ namespace SceneCaptureSensor_local_ns
 // =============================================================================
 
 ASceneCaptureSensor::ASceneCaptureSensor(const FObjectInitializer &ObjectInitializer)
+<<<<<<< HEAD
     : Super(ObjectInitializer)
+=======
+  : Super(ObjectInitializer)
+>>>>>>> f676339c2 (added template for defaultgame.ini)
 {
   PrimaryActorTick.bCanEverTick = true;
   PrimaryActorTick.TickGroup = TG_PrePhysics;
@@ -99,18 +111,22 @@ float ASceneCaptureSensor::GetFOVAngle() const
   return CaptureComponent2D->FOVAngle;
 }
 
+<<<<<<< HEAD
 float ASceneCaptureSensor::GetDirtMaskIntensity() const
 {
   check(CaptureComponent2D != nullptr);
   return CaptureComponent2D->PostProcessSettings.BloomDirtMaskIntensity;
 }
 
+=======
+>>>>>>> f676339c2 (added template for defaultgame.ini)
 void ASceneCaptureSensor::SetExposureMethod(EAutoExposureMethod Method)
 {
   check(CaptureComponent2D != nullptr);
   CaptureComponent2D->PostProcessSettings.AutoExposureMethod = Method;
 }
 
+<<<<<<< HEAD
 void ASceneCaptureSensor::SetLocalExposureMethod(ELocalExposureMethod Method)
 {
   check(CaptureComponent2D != nullptr);
@@ -147,6 +163,8 @@ UTexture2D *ASceneCaptureSensor::GetBloomKernelTexture() const
   return CaptureComponent2D->PostProcessSettings.BloomConvolutionTexture;
 }
 
+=======
+>>>>>>> f676339c2 (added template for defaultgame.ini)
 EAutoExposureMethod ASceneCaptureSensor::GetExposureMethod() const
 {
   check(CaptureComponent2D != nullptr);
@@ -447,12 +465,15 @@ float ASceneCaptureSensor::GetLensFlareIntensity() const
   return CaptureComponent2D->PostProcessSettings.LensFlareIntensity;
 }
 
+<<<<<<< HEAD
 void ASceneCaptureSensor::SetBloomMethod(EBloomMethod Method)
 {
   check(CaptureComponent2D != nullptr);
   CaptureComponent2D->PostProcessSettings.BloomMethod = Method;
 }
 
+=======
+>>>>>>> f676339c2 (added template for defaultgame.ini)
 void ASceneCaptureSensor::SetBloomIntensity(float Intensity)
 {
   check(CaptureComponent2D != nullptr);
@@ -525,6 +546,7 @@ FVector4 ASceneCaptureSensor::GetColorSaturation() const
   return CaptureComponent2D->PostProcessSettings.ColorSaturation;
 }
 
+<<<<<<< HEAD
 void ASceneCaptureSensor::SetColorSaturationMidtones(FVector4 ColorSaturation)
 {
   check(CaptureComponent2D != nullptr);
@@ -549,6 +571,8 @@ FVector4 ASceneCaptureSensor::GetColorSaturationHighlights() const
   return CaptureComponent2D->PostProcessSettings.ColorSaturationHighlights;
 }
 
+=======
+>>>>>>> f676339c2 (added template for defaultgame.ini)
 void ASceneCaptureSensor::SetColorContrast(FVector4 ColorContrast)
 {
   check(CaptureComponent2D != nullptr);
@@ -561,6 +585,7 @@ FVector4 ASceneCaptureSensor::GetColorContrast() const
   return CaptureComponent2D->PostProcessSettings.ColorContrast;
 }
 
+<<<<<<< HEAD
 void ASceneCaptureSensor::SetColorContrastMidtones(FVector4 ColorContrast)
 {
   check(CaptureComponent2D != nullptr);
@@ -585,6 +610,8 @@ FVector4 ASceneCaptureSensor::GetColorContrastHighlights() const
   return CaptureComponent2D->PostProcessSettings.ColorContrastHighlights;
 }
 
+=======
+>>>>>>> f676339c2 (added template for defaultgame.ini)
 void ASceneCaptureSensor::SetColorGamma(FVector4 ColorGamma)
 {
   check(CaptureComponent2D != nullptr);
@@ -645,6 +672,7 @@ float ASceneCaptureSensor::GetVignetteIntensity() const
   return CaptureComponent2D->PostProcessSettings.VignetteIntensity;
 }
 
+<<<<<<< HEAD
 void ASceneCaptureSensor::SetGlobalGain(FVector4 Gain)
 {
   check(CaptureComponent2D != nullptr);
@@ -717,6 +745,8 @@ float ASceneCaptureSensor::GetAORadius() const
   return CaptureComponent2D->PostProcessSettings.AmbientOcclusionRadius;
 }
 
+=======
+>>>>>>> f676339c2 (added template for defaultgame.ini)
 void ASceneCaptureSensor::SetHighlightContrastScale(float HighlightContrastScale)
 {
   check(CaptureComponent2D != nullptr);
@@ -742,6 +772,7 @@ float ASceneCaptureSensor::GetShadowContrastScale() const
 }
 
 void ASceneCaptureSensor::UpdatePostProcessConfig(
+<<<<<<< HEAD
     FPostProcessConfig &InOutPostProcessConfig)
 {
 }
@@ -862,6 +893,24 @@ bool ASceneCaptureSensor::ApplyPostProcessVolumeToSensor(APostProcessVolume *Ori
 
 void ASceneCaptureSensor::EnqueueRenderSceneImmediate()
 {
+=======
+    FPostProcessConfig& InOutPostProcessConfig)
+{
+}
+
+bool ASceneCaptureSensor::ApplyPostProcessVolumeToSensor(APostProcessVolume* Origin, ASceneCaptureSensor* Dest, bool bOverrideCurrentCamera)
+{
+  if(!IsValid(Origin) || !IsValid(Dest))
+  {
+    return false;
+  }
+  
+  Dest->CaptureComponent2D->PostProcessSettings = Origin->Settings;
+  return true;
+}
+
+void ASceneCaptureSensor::EnqueueRenderSceneImmediate() {
+>>>>>>> f676339c2 (added template for defaultgame.ini)
   TRACE_CPUPROFILER_EVENT_SCOPE(ASceneCaptureSensor::EnqueueRenderSceneImmediate);
   // Creates an snapshot of the scene, requieres bCaptureEveryFrame = false.
 #ifdef CARLA_HAS_GBUFFER_API
@@ -876,7 +925,11 @@ void ASceneCaptureSensor::BeginPlay()
   using namespace SceneCaptureSensor_local_ns;
 
   // Determine the gamma of the player.
+<<<<<<< HEAD
   const bool bInForceLinearGamma = !bEnablePostProcessingEffects;
+=======
+  const bool bInForceLinearGamma = false; // disable forced linear gamma
+>>>>>>> f676339c2 (added template for defaultgame.ini)
 
   CaptureRenderTarget->InitCustomFormat(
       ImageWidth,
@@ -886,7 +939,11 @@ void ASceneCaptureSensor::BeginPlay()
 
   if (bEnablePostProcessingEffects)
   {
+<<<<<<< HEAD
     CaptureRenderTarget->TargetGamma = TargetGamma;
+=======
+    CaptureRenderTarget->TargetGamma = 2.2f; // match spectator gamma
+>>>>>>> f676339c2 (added template for defaultgame.ini)
   }
 
   check(IsValid(CaptureComponent2D) && IsValidChecked(CaptureComponent2D));
@@ -916,15 +973,40 @@ void ASceneCaptureSensor::BeginPlay()
   CaptureComponent2D->ShowFlags = PostProcessConfig.EngineShowFlags;
   CaptureComponent2D->PostProcessSettings = PostProcessConfig.PostProcessSettings;
 
+<<<<<<< HEAD
   if (ImageWidth < 1920 || ImageHeight < 1080)
     CaptureComponent2D->ShowFlags.SetMotionBlur(false);
 
+=======
+ // Apply the scene's post-process volume to match the spectator view
+  APostProcessVolume* PostProcessVolume = nullptr;
+  for (TActorIterator<APostProcessVolume> It(GetWorld()); It; ++It)
+  {
+    PostProcessVolume = *It;
+    break;  // Use the first post-process volume found
+  }
+  if (PostProcessVolume)
+  {
+    ApplyPostProcessVolumeToSensor(PostProcessVolume, this, true);
+  }
+
+  // Enable motion blur regardless of resolution to match spectator view
+  CaptureComponent2D->ShowFlags.SetMotionBlur(true);
+
+  // Enable TAA for smoother edges, matching spectator view
+  CaptureComponent2D->ShowFlags.TemporalAA = true;
+  
+>>>>>>> f676339c2 (added template for defaultgame.ini)
   // This ensures the camera is always spawning the raindrops in case the
   // weather was previously set to have rain.
   auto Weather = GetEpisode().GetWeather();
   if (Weather != nullptr)
     Weather->NotifyWeather(this);
+<<<<<<< HEAD
 
+=======
+  
+>>>>>>> f676339c2 (added template for defaultgame.ini)
   Super::BeginPlay();
 }
 
@@ -957,6 +1039,7 @@ void ASceneCaptureSensor::EndPlay(const EEndPlayReason::Type EndPlayReason)
 
 #ifdef CARLA_HAS_GBUFFER_API
 
+<<<<<<< HEAD
 constexpr const TCHAR *GBufferNames[] =
     {
         TEXT("SceneColor"),
@@ -980,12 +1063,38 @@ static void CheckGBufferStream(T &GBufferStream, FGBufferRequest &GBuffer)
   GBufferStream.bIsUsed = GBufferStream.Stream.AreClientsListening();
   if (GBufferStream.bIsUsed)
     GBuffer.MarkAsRequested(ID);
+=======
+constexpr const TCHAR* GBufferNames[] =
+{
+  TEXT("SceneColor"),
+  TEXT("SceneDepth"),
+  TEXT("SceneStencil"),
+  TEXT("GBufferA"),
+  TEXT("GBufferB"),
+  TEXT("GBufferC"),
+  TEXT("GBufferD"),
+  TEXT("GBufferE"),
+  TEXT("GBufferF"),
+  TEXT("Velocity"),
+  TEXT("SSAO"),
+  TEXT("CustomDepth"),
+  TEXT("CustomStencil"),
+};
+
+template <EGBufferTextureID ID, typename T>
+static void CheckGBufferStream(T& GBufferStream, FGBufferRequest& GBuffer)
+{
+    GBufferStream.bIsUsed = GBufferStream.Stream.AreClientsListening();
+    if (GBufferStream.bIsUsed)
+        GBuffer.MarkAsRequested(ID);
+>>>>>>> f676339c2 (added template for defaultgame.ini)
 }
 
 static uint64 Prior = 0;
 
 void ASceneCaptureSensor::CaptureSceneExtended()
 {
+<<<<<<< HEAD
   auto GBufferPtr = MakeUnique<FGBufferRequest>();
   auto &GBuffer = *GBufferPtr;
 
@@ -1043,21 +1152,74 @@ void ASceneCaptureSensor::CaptureSceneExtended()
 void ASceneCaptureSensor::SendGBufferTextures(FGBufferRequest &GBuffer)
 {
   SendGBufferTexturesInternal(*this, GBuffer);
+=======
+    auto GBufferPtr = MakeUnique<FGBufferRequest>();
+    auto& GBuffer = *GBufferPtr;
+
+    CheckGBufferStream<EGBufferTextureID::SceneColor>(CameraGBuffers.SceneColor, GBuffer);
+    CheckGBufferStream<EGBufferTextureID::SceneDepth>(CameraGBuffers.SceneDepth, GBuffer);
+    CheckGBufferStream<EGBufferTextureID::SceneStencil>(CameraGBuffers.SceneStencil, GBuffer);
+    CheckGBufferStream<EGBufferTextureID::GBufferA>(CameraGBuffers.GBufferA, GBuffer);
+    CheckGBufferStream<EGBufferTextureID::GBufferB>(CameraGBuffers.GBufferB, GBuffer);
+    CheckGBufferStream<EGBufferTextureID::GBufferC>(CameraGBuffers.GBufferC, GBuffer);
+    CheckGBufferStream<EGBufferTextureID::GBufferD>(CameraGBuffers.GBufferD, GBuffer);
+    CheckGBufferStream<EGBufferTextureID::GBufferE>(CameraGBuffers.GBufferE, GBuffer);
+    CheckGBufferStream<EGBufferTextureID::GBufferF>(CameraGBuffers.GBufferF, GBuffer);
+    CheckGBufferStream<EGBufferTextureID::Velocity>(CameraGBuffers.Velocity, GBuffer);
+    CheckGBufferStream<EGBufferTextureID::SSAO>(CameraGBuffers.SSAO, GBuffer);
+    CheckGBufferStream<EGBufferTextureID::CustomDepth>(CameraGBuffers.CustomDepth, GBuffer);
+    CheckGBufferStream<EGBufferTextureID::CustomStencil>(CameraGBuffers.CustomStencil, GBuffer);
+
+    if (GBufferPtr->DesiredTexturesMask == 0)
+    {
+        // Creates an snapshot of the scene, requieres bCaptureEveryFrame = false.
+        CaptureComponent2D->CaptureScene();
+        return;
+    }
+
+    if (Prior != GBufferPtr->DesiredTexturesMask)
+        UE_LOG(LogCarla, Verbose, TEXT("GBuffer selection changed (%llu)."), GBufferPtr->DesiredTexturesMask);
+
+    Prior = GBufferPtr->DesiredTexturesMask;
+    GBufferPtr->OwningActor = CaptureComponent2D->GetViewOwner();
+
+    CaptureComponent2D->CaptureSceneWithGBuffer(GBuffer);
+
+    AsyncTask(ENamedThreads::AnyHiPriThreadNormalTask, [this, GBuffer = MoveTemp(GBufferPtr)]() mutable
+    {
+      SendGBufferTextures(*GBuffer);
+    });
+}
+
+void ASceneCaptureSensor::SendGBufferTextures(FGBufferRequest& GBuffer)
+{
+    SendGBufferTexturesInternal(*this, GBuffer);
+>>>>>>> f676339c2 (added template for defaultgame.ini)
 }
 
 #endif
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> f676339c2 (added template for defaultgame.ini)
 // =============================================================================
 // -- Local static functions implementations -----------------------------------
 // =============================================================================
 
+<<<<<<< HEAD
 namespace SceneCaptureSensor_local_ns
 {
+=======
+namespace SceneCaptureSensor_local_ns {
+>>>>>>> f676339c2 (added template for defaultgame.ini)
 
   static void SetCameraDefaultOverrides(USceneCaptureComponent2D &CaptureComponent2D)
   {
     auto &PostProcessSettings = CaptureComponent2D.PostProcessSettings;
 
+<<<<<<< HEAD
     PostProcessSettings.bOverride_ColorSaturationMidtones = true;
     PostProcessSettings.bOverride_ColorContrastMidtones = true;
     PostProcessSettings.bOverride_ColorSaturationHighlights = true;
@@ -1072,6 +1234,9 @@ namespace SceneCaptureSensor_local_ns
     PostProcessSettings.bOverride_BloomMethod = true;
     PostProcessSettings.bOverride_BloomDirtMaskIntensity = true;
     PostProcessSettings.bOverride_BloomConvolutionTexture = true;
+=======
+    PostProcessSettings.bOverride_AutoExposureMethod = true;
+>>>>>>> f676339c2 (added template for defaultgame.ini)
     PostProcessSettings.bOverride_AutoExposureBias = true;
     PostProcessSettings.bOverride_CameraShutterSpeed = true;
     PostProcessSettings.bOverride_CameraISO = true;

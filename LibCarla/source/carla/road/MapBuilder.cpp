@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 // Copyright (c) 2025 Computer Vision Center (CVC) at the Universitat Autonoma
+=======
+// Copyright (c) 2024 Computer Vision Center (CVC) at the Universitat Autonoma
+>>>>>>> f676339c2 (added template for defaultgame.ini)
 // de Barcelona (UAB).
 //
 // This work is licensed under the terms of the MIT license.
@@ -184,8 +188,12 @@ namespace road {
       std::string lane_change,
       const double height,
       const std::string type_name,
+<<<<<<< HEAD
       const double type_width,
       bool is_rht) {
+=======
+      const double type_width) {
+>>>>>>> f676339c2 (added template for defaultgame.ini)
     DEBUG_ASSERT(lane != nullptr);
     RoadInfoMarkRecord::LaneChange lc;
 
@@ -202,7 +210,11 @@ namespace road {
     }
     _temp_lane_info_container[lane].emplace_back(std::make_unique<RoadInfoMarkRecord>(s, road_mark_id, type,
         weight, color,
+<<<<<<< HEAD
         material, width, lc, height, type_name, type_width, is_rht));
+=======
+        material, width, lc, height, type_name, type_width));
+>>>>>>> f676339c2 (added template for defaultgame.ini)
   }
 
   void MapBuilder::CreateRoadMarkTypeLine(
@@ -357,8 +369,12 @@ namespace road {
         const double length,
         const JuncId junction_id,
         const RoadId predecessor,
+<<<<<<< HEAD
         const RoadId successor,
         const bool is_rht)
+=======
+        const RoadId successor)
+>>>>>>> f676339c2 (added template for defaultgame.ini)
     {
 
       // add it
@@ -371,7 +387,10 @@ namespace road {
       road->_length = length;
       road->_junction_id = junction_id;
       (junction_id != -1) ? road->_is_junction = true : road->_is_junction = false;
+<<<<<<< HEAD
       road->_is_rht = is_rht;
+=======
+>>>>>>> f676339c2 (added template for defaultgame.ini)
       road->_successor = successor;
       road->_predecessor = predecessor;
 
@@ -609,13 +628,18 @@ namespace road {
   }
 
   // return the pointer to a lane object
+<<<<<<< HEAD
   Lane *MapBuilder::GetEdgeLanePointer(RoadId road_id, LaneId lane_id) {
+=======
+  Lane *MapBuilder::GetEdgeLanePointer(RoadId road_id, bool from_start, LaneId lane_id) {
+>>>>>>> f676339c2 (added template for defaultgame.ini)
 
     if (!_map_data.ContainsRoad(road_id)) {
       return nullptr;
     }
     Road &road = _map_data.GetRoad(road_id);
 
+<<<<<<< HEAD
     // Not very pretty as it repeats the IsPositiveDirection logic of the Lane class
     bool from_start = false;
     if (road.IsRHT() && lane_id <= 0){
@@ -624,6 +648,8 @@ namespace road {
       from_start = true;
     }
 
+=======
+>>>>>>> f676339c2 (added template for defaultgame.ini)
     // get the lane section
     LaneSection *section;
     if (from_start) {
@@ -654,13 +680,21 @@ namespace road {
     LaneSection &section = road._lane_sections.GetById(section_id);
 
     // get the lane
+<<<<<<< HEAD
     Lane *lane = section.GetLane(lane_id); 
+=======
+    Lane *lane = section.GetLane(lane_id);
+>>>>>>> f676339c2 (added template for defaultgame.ini)
     DEBUG_ASSERT(lane != nullptr);
 
     // successor and predecessor (road and lane)
     LaneId next;
     RoadId next_road;
+<<<<<<< HEAD
     if (lane->IsPositiveDirection()) {
+=======
+    if (lane_id <= 0) {
+>>>>>>> f676339c2 (added template for defaultgame.ini)
       next_road = road.GetSuccessor();
       next = lane->GetSuccessor();
     } else {
@@ -673,12 +707,21 @@ namespace road {
     double s = section.GetDistance();
 
     // check if we are in a lane section in the middle
+<<<<<<< HEAD
     if ((!lane->IsPositiveDirection() && s > 0) ||
         (lane->IsPositiveDirection() && road._lane_sections.upper_bound(s) != road._lane_sections.end())) {
       // check if lane has a next link (if not, it deads in the middle section)
       if (next != 0 || (lane_id == 0 && next == 0)) {
         // change to next / prev section
         if (lane->IsPositiveDirection()) {
+=======
+    if ((lane_id > 0 && s > 0) ||
+        (lane_id <= 0 && road._lane_sections.upper_bound(s) != road._lane_sections.end())) {
+      // check if lane has a next link (if not, it deads in the middle section)
+      if (next != 0 || (lane_id == 0 && next == 0)) {
+        // change to next / prev section
+        if (lane_id <= 0) {
+>>>>>>> f676339c2 (added template for defaultgame.ini)
           result.push_back(road.GetNextLane(s, next));
         } else {
           result.push_back(road.GetPrevLane(s, next));
@@ -688,7 +731,11 @@ namespace road {
       // change to another road / junction
       if (next != 0 || (lane_id == 0 && next == 0)) {
         // single road
+<<<<<<< HEAD
         result.push_back(GetEdgeLanePointer(next_road, next));
+=======
+        result.push_back(GetEdgeLanePointer(next_road, (next <= 0), next));
+>>>>>>> f676339c2 (added template for defaultgame.ini)
       }
     } else {
       // several roads (junction)
@@ -698,19 +745,31 @@ namespace road {
       auto next_road_as_junction = static_cast<JuncId>(next_road);
       auto options = GetJunctionLanes(next_road_as_junction, road_id, lane_id);
       for (auto opt : options) {
+<<<<<<< HEAD
         /// @todo: Find a better way to change from 'const Lane*' to 'Lane*' and use opt.second
         result.push_back(GetEdgeLanePointer(opt.first, opt.second->GetId()));
+=======
+        result.push_back(GetEdgeLanePointer(opt.first, (opt.second <= 0), opt.second));
+>>>>>>> f676339c2 (added template for defaultgame.ini)
       }
     }
 
     return result;
   }
 
+<<<<<<< HEAD
   std::vector<std::pair<RoadId, const Lane*>> MapBuilder::GetJunctionLanes(
       JuncId junction_id,
       RoadId road_id,
       LaneId lane_id) {
     std::vector<std::pair<RoadId, const Lane*>> result;
+=======
+  std::vector<std::pair<RoadId, LaneId>> MapBuilder::GetJunctionLanes(
+      JuncId junction_id,
+      RoadId road_id,
+      LaneId lane_id) {
+    std::vector<std::pair<RoadId, LaneId>> result;
+>>>>>>> f676339c2 (added template for defaultgame.ini)
 
     // get the junction
     Junction *junction = _map_data.GetJunction(junction_id);
@@ -718,6 +777,7 @@ namespace road {
       return result;
     }
 
+<<<<<<< HEAD
     // Completely remade, as the junctions have incoming roads, but not "exitting" ones
     for (auto con : junction->_connections) {
       auto conn_road = GetRoad(con.second.connecting_road);
@@ -737,13 +797,36 @@ namespace road {
         for (auto lane : conn_road->GetLanesAt(conn_road->GetLength())){
           if (lane_id == lane.second->_successor){
             result.push_back(std::make_pair(conn_id, lane.second));
+=======
+    // check all connections
+    for (auto con : junction->_connections) {
+      // only connections for our road
+      if (con.second.incoming_road == road_id) {
+        // for center lane it is always next lane id 0, we don't need to search
+        // because it is not in the junction
+        if (lane_id == 0) {
+          result.push_back(std::make_pair(con.second.connecting_road, 0));
+        } else {
+          // check all lane links
+          for (auto link : con.second.lane_links) {
+            // is our lane id ?
+            if (link.from == lane_id) {
+              // add as option
+              result.push_back(std::make_pair(con.second.connecting_road, link.to));
+            }
+>>>>>>> f676339c2 (added template for defaultgame.ini)
           }
         }
       }
     }
 
+<<<<<<< HEAD
   return result;
 }
+=======
+    return result;
+  }
+>>>>>>> f676339c2 (added template for defaultgame.ini)
 
   // assign pointers to the next lanes
   void MapBuilder::CreatePointersBetweenRoadSegments(void) {
@@ -798,6 +881,7 @@ namespace road {
         }
       }
     }
+<<<<<<< HEAD
     // DebugRoadConnections();
   }
 
@@ -815,6 +899,8 @@ namespace road {
         }
       }
     }
+=======
+>>>>>>> f676339c2 (added template for defaultgame.ini)
   }
 
   geom::Transform MapBuilder::ComputeSignalTransform(std::unique_ptr<Signal> &signal, MapData &data) {
@@ -1092,7 +1178,10 @@ void MapBuilder::CreateController(
         auto road_transform = map.ComputeTransform(closest_waypoint_to_signal.value());
         auto distance_to_road = (road_transform.location -signal_position).Length();
         double lane_width = map.GetLaneWidth(closest_waypoint_to_signal.value());
+<<<<<<< HEAD
         bool is_rht = map.GetLane(closest_waypoint_to_signal.value()).GetRoad()->IsRHT();
+=======
+>>>>>>> f676339c2 (added template for defaultgame.ini)
         int displacement_direction = 1;
         int iter = 0;
         int MaxIter = 10;
@@ -1102,7 +1191,11 @@ void MapBuilder::CreateController(
             log_debug("Traffic sign",
                 signal->GetSignalId(),
                 "overlaps a driving lane. Moving out of the road...");
+<<<<<<< HEAD
             }
+=======
+          }
+>>>>>>> f676339c2 (added template for defaultgame.ini)
 
           auto right_waypoint = map.GetRight(closest_waypoint_to_signal.value());
           auto right_lane_type = (right_waypoint) ? map.GetLaneType(right_waypoint.value()) : carla::road::Lane::LaneType::None;
@@ -1110,6 +1203,7 @@ void MapBuilder::CreateController(
           auto left_waypoint = map.GetLeft(closest_waypoint_to_signal.value());
           auto left_lane_type = (left_waypoint) ? map.GetLaneType(left_waypoint.value()) : carla::road::Lane::LaneType::None;
 
+<<<<<<< HEAD
           if (is_rht) {
             // Move to the right if possible, then left
             if (right_lane_type != carla::road::Lane::LaneType::Driving) {
@@ -1128,6 +1222,14 @@ void MapBuilder::CreateController(
             } else {
               displacement_direction = 0;
             }
+=======
+          if (right_lane_type != carla::road::Lane::LaneType::Driving) {
+            displacement_direction = 1;
+          } else if (left_lane_type != carla::road::Lane::LaneType::Driving) {
+            displacement_direction = -1;
+          } else {
+            displacement_direction = 0;
+>>>>>>> f676339c2 (added template for defaultgame.ini)
           }
 
           geom::Vector3D displacement = 1.f*(road_transform.GetRightVector()) *

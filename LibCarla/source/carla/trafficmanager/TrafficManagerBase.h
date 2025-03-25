@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 // Copyright (c) 2025 Computer Vision Center (CVC) at the Universitat Autonoma
+=======
+// Copyright (c) 2024 Computer Vision Center (CVC) at the Universitat Autonoma
+>>>>>>> f676339c2 (added template for defaultgame.ini)
 // de Barcelona (UAB).
 //
 // This work is licensed under the terms of the MIT license.
@@ -113,8 +117,13 @@ public:
   /// Method to set Global Distance to Leading Vehicle.
   virtual void SetGlobalDistanceToLeadingVehicle(const float dist) = 0;
 
+<<<<<<< HEAD
   /// Method to set % to keep on the slow lane.
   virtual void SetKeepSlowLanePercentage(const ActorPtr &actor,const float percentage) = 0;
+=======
+  /// Method to set % to keep on the right lane.
+  virtual void SetKeepRightPercentage(const ActorPtr &actor,const float percentage) = 0;
+>>>>>>> f676339c2 (added template for defaultgame.ini)
 
   /// Method to set % to randomly do a left lane change.
   virtual void SetRandomLeftLaneChangePercentage(const ActorPtr &actor, const float percentage) = 0;

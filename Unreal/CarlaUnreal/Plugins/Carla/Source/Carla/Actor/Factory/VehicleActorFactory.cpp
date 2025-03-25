@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 // Copyright (c) 2025 Computer Vision Center (CVC) at the Universitat Autonoma
+=======
+// Copyright (c) 2024 Computer Vision Center (CVC) at the Universitat Autonoma
+>>>>>>> f676339c2 (added template for defaultgame.ini)
 // de Barcelona (UAB).
 //
 // This work is licensed under the terms of the MIT license.
@@ -21,7 +25,14 @@ TArray<FActorDefinition> AVehicleActorFactory::GetDefinitions()
   LoadVehicleParametersArrayFromFile("VehicleParameters.json", VehiclesParams);
   FString UniqueVehicleParameters = GetWorld()->GetMapName().Mid(GetWorld()->StreamingLevelsPrefix.Len()) + "/Vehicles.json";
   LoadVehicleParametersArrayFromFile(UniqueVehicleParameters, MineVehiclesParams);
+<<<<<<< HEAD
   VehiclesParams.Append(MineVehiclesParams);
+=======
+  for (const FVehicleParameters& VehicleParams : MineVehiclesParams)
+  {
+    VehiclesParams.Add(VehicleParams);
+  }
+>>>>>>> f676339c2 (added template for defaultgame.ini)
   UActorBlueprintFunctionLibrary::MakeVehicleDefinitions(VehiclesParams, Definitions);
   return Definitions;
 }
@@ -239,6 +250,7 @@ void AVehicleActorFactory::LoadVehicleParametersArrayFromFile(const FString& Fil
           UE_LOG(LogCarla, Error, TEXT("Failed to parse vehicle parameters from %s"), *FilePath);
       }
   }
+<<<<<<< HEAD
   else if(FileName == "VehicleParameters.json")
   {
       UE_LOG(LogCarla, Error, TEXT("Failed to load file: %s"), *FilePath);
@@ -247,4 +259,10 @@ void AVehicleActorFactory::LoadVehicleParametersArrayFromFile(const FString& Fil
   {
     UE_LOG(LogCarla, Warning, TEXT("Additional file not found: %s"), *FilePath);
   }
+=======
+  else
+  {
+      UE_LOG(LogCarla, Error, TEXT("Failed to load file: %s"), *FilePath);
+  }
+>>>>>>> f676339c2 (added template for defaultgame.ini)
 }

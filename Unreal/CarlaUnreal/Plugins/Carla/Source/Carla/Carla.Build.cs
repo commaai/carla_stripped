@@ -128,8 +128,12 @@ public class Carla :
       "RHI",
       "Renderer",
       "ProceduralMeshComponent",
+<<<<<<< HEAD
       "MeshDescription",
       "Projects"
+=======
+      "MeshDescription"
+>>>>>>> f676339c2 (added template for defaultgame.ini)
     });
 
     if (EnableCarSim)

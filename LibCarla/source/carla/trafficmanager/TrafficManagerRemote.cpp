@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 // Copyright (c) 2025 Computer Vision Center (CVC) at the Universitat Autonoma
+=======
+// Copyright (c) 2024 Computer Vision Center (CVC) at the Universitat Autonoma
+>>>>>>> f676339c2 (added template for defaultgame.ini)
 // de Barcelona (UAB).
 //
 // This work is licensed under the terms of the MIT license.
@@ -191,10 +195,17 @@ void TrafficManagerRemote::SetPercentageRunningSign(const ActorPtr &_actor, cons
   client.SetPercentageRunningSign(actor, percentage);
 }
 
+<<<<<<< HEAD
 void TrafficManagerRemote::SetKeepSlowLanePercentage(const ActorPtr &_actor, const float percentage) {
   carla::rpc::Actor actor(_actor->Serialize());
 
   client.SetKeepSlowLanePercentage(actor, percentage);
+=======
+void TrafficManagerRemote::SetKeepRightPercentage(const ActorPtr &_actor, const float percentage) {
+  carla::rpc::Actor actor(_actor->Serialize());
+
+  client.SetKeepRightPercentage(actor, percentage);
+>>>>>>> f676339c2 (added template for defaultgame.ini)
 }
 
 void TrafficManagerRemote::SetRandomLeftLaneChangePercentage(const ActorPtr &_actor, const float percentage) {

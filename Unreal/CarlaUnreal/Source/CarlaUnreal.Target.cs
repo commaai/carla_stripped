@@ -21,7 +21,11 @@ public class CarlaUnrealTarget : TargetRules
         DefaultBuildSettings = BuildSettingsVersion.Latest;
         IncludeOrderVersion = EngineIncludeOrderVersion.Latest;
         Type = TargetType.Game;
+<<<<<<< HEAD
         
+=======
+ 
+>>>>>>> f676339c2 (added template for defaultgame.ini)
         ExtraModuleNames.Add("CarlaUnreal");
 
         LogFlagStatus("Unity build", EnableUnityBuild);

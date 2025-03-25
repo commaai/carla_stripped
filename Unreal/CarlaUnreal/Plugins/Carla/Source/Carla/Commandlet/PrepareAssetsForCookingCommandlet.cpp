@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 // Copyright (c) 2025 Computer Vision Center (CVC) at the Universitat Autonoma
+=======
+// Copyright (c) 2024 Computer Vision Center (CVC) at the Universitat Autonoma
+>>>>>>> f676339c2 (added template for defaultgame.ini)
 // de Barcelona (UAB).
 //
 // This work is licensed under the terms of the MIT license.
@@ -62,6 +66,7 @@ UPrepareAssetsForCookingCommandlet::UPrepareAssetsForCookingCommandlet()
   // Get Carla Default materials, these will be used for maps that need to use
   // Carla materials
   static ConstructorHelpers::FObjectFinder<UMaterialInstanceConstant> MarkingNodeYellowMaterial(TEXT(
+<<<<<<< HEAD
     "MaterialInstanceConstant'/Game/Carla/Static/GenericMaterials/Roads/MI_Road_Asphalt_A.MI_Road_Asphalt_A'"));
   static ConstructorHelpers::FObjectFinder<UMaterialInstanceConstant> MarkingNodeWhiteMaterial(TEXT(
     "MaterialInstanceConstant'/Game/Carla/Static/GenericMaterials/Roads/MI_Road_Asphalt_B_LaneMarkingWhite.MI_Road_Asphalt_B_LaneMarkingWhite'"));
@@ -75,6 +80,21 @@ UPrepareAssetsForCookingCommandlet::UPrepareAssetsForCookingCommandlet()
       "MaterialInstanceConstant'/Game/Carla/Static/GenericMaterials/Gutters_Curbs/largeM_gutter/MI_largeM_gutter01.MI_largeM_gutter01'"));
   static ConstructorHelpers::FObjectFinder<UMaterialInstanceConstant> SidewalkNode(TEXT(
       "MaterialInstanceConstant'/Game/Carla/Static/GenericMaterials/Sidewalk/MI_Sidewalk_Apartment.MI_Sidewalk_Apartment'"));
+=======
+    "MaterialInstanceConstant'/Game/Carla/Static/GenericMaterials/RoadPainterMaterials/LargeMaps/M_Road_03_Tiled_V3.M_Road_03_Tiled_V3'"));
+  static ConstructorHelpers::FObjectFinder<UMaterialInstanceConstant> MarkingNodeWhiteMaterial(TEXT(
+    "MaterialInstanceConstant'/Game/Carla/Static/GenericMaterials/RoadPainterMaterials/M_Road_03_LMW.M_Road_03_LMW'"));
+  static ConstructorHelpers::FObjectFinder<UMaterialInstanceConstant> RoadNode(TEXT(
+      "MaterialInstanceConstant'/Game/Carla/Static/GenericMaterials/RoadPainterMaterials/LargeMaps/M_Road_03_Tiled_V2.M_Road_03_Tiled_V2'"));
+  static ConstructorHelpers::FObjectFinder<UMaterialInstanceConstant> TerrainNodeMaterial(TEXT(
+      "MaterialInstanceConstant'/Game/Carla/Static/GenericMaterials/00_MastersOpt/Large_Maps/materials/MI_LargeLandscape_Grass.MI_LargeLandscape_Grass'"));
+  static ConstructorHelpers::FObjectFinder<UMaterialInstanceConstant> CurbNodeMaterial(TEXT(
+      "MaterialInstanceConstant'/Game/Carla/Static/GenericMaterials/LargeMap_materials/largeM_curb/MI_largeM_curb01.MI_largeM_curb01'"));
+  static ConstructorHelpers::FObjectFinder<UMaterialInstanceConstant> GutterNodeMaterial(TEXT(
+      "MaterialInstanceConstant'/Game/Carla/Static/GenericMaterials/LargeMap_materials/largeM_gutter/MI_largeM_gutter01.MI_largeM_gutter01'"));
+  static ConstructorHelpers::FObjectFinder<UMaterialInstanceConstant> SidewalkNode(TEXT(
+      "MaterialInstanceConstant'/Game/Carla/Static/GenericMaterials/LargeMap_materials/largeM_sidewalk/tile01/MI_largeM_tile02.MI_largeM_tile02'"));
+>>>>>>> f676339c2 (added template for defaultgame.ini)
 
   GutterNodeMaterialInstance = (UMaterialInstance *) GutterNodeMaterial.Object;
   CurbNodeMaterialInstance = (UMaterialInstance *) CurbNodeMaterial.Object;

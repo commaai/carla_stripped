@@ -117,6 +117,7 @@ void LocalizationStage::Update(const unsigned long index) {
 
   // Apply parameters for keep right rule and random lane changes.
   if (!force_lane_change && vehicle_speed > MIN_LANE_CHANGE_SPEED){
+<<<<<<< HEAD
     const float perc_keep_slow = parameters.GetKeepSlowLanePercentage(actor_id);
     const float perc_random_leftlanechange = parameters.GetRandomLeftLaneChangePercentage(actor_id);
     const float perc_random_rightlanechange = parameters.GetRandomRightLaneChangePercentage(actor_id);
@@ -139,6 +140,28 @@ void LocalizationStage::Update(const unsigned long index) {
     } else if (is_left_lane_change) {
       force_lane_change = true;
       lane_change_direction = false;
+=======
+    const float perc_keep_right = parameters.GetKeepRightPercentage(actor_id);
+    const float perc_random_leftlanechange = parameters.GetRandomLeftLaneChangePercentage(actor_id);
+    const float perc_random_rightlanechange = parameters.GetRandomRightLaneChangePercentage(actor_id);
+    const bool is_keep_right = perc_keep_right > random_device.next();
+    const bool is_random_left_change = perc_random_leftlanechange >= random_device.next();
+    const bool is_random_right_change = perc_random_rightlanechange >= random_device.next();
+
+    // Determine which of the parameters we should apply.
+    if (is_keep_right || is_random_right_change) {
+      force_lane_change = true;
+      lane_change_direction = true;
+    }
+    if (is_random_left_change) {
+      if (!force_lane_change) {
+        force_lane_change = true;
+        lane_change_direction = false;
+      } else {
+        // Both a left and right lane changes are forced. Choose between one of them.
+        lane_change_direction = FIFTYPERC > random_device.next();
+      }
+>>>>>>> f676339c2 (added template for defaultgame.ini)
     }
   }
 

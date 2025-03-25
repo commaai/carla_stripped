@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 // Copyright (c) 2025 Computer Vision Center (CVC) at the Universitat Autonoma
+=======
+// Copyright (c) 2024 Computer Vision Center (CVC) at the Universitat Autonoma
+>>>>>>> f676339c2 (added template for defaultgame.ini)
 // de Barcelona (UAB).
 //
 // This work is licensed under the terms of the MIT license.
@@ -10,7 +14,10 @@
 #include "Carla/Actor/PedestrianParameters.h"
 #include "Carla/Actor/PropParameters.h"
 #include "Carla/Actor/VehicleParameters.h"
+<<<<<<< HEAD
 #include "Carla/Actor/BlueprintParameters.h"
+=======
+>>>>>>> f676339c2 (added template for defaultgame.ini)
 
 #include <util/ue-header-guard-begin.h>
 #include "Kismet/BlueprintFunctionLibrary.h"
@@ -155,6 +162,7 @@ public:
       const TArray<FPropParameters> &ParameterArray,
       TArray<FActorDefinition> &Definitions);
 
+<<<<<<< HEAD
   UFUNCTION(Category = "Carla Actor", BlueprintCallable)
   static void MakeBlueprintDefinition(
       const FBlueprintParameters &Parameters,
@@ -166,6 +174,8 @@ public:
       const TArray<FBlueprintParameters> &ParameterArray,
       TArray<FActorDefinition> &Definitions);
 
+=======
+>>>>>>> f676339c2 (added template for defaultgame.ini)
   UFUNCTION()
   static void MakeObstacleDetectorDefinitions(
       const FString &Type,

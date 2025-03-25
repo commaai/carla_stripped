@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 // Copyright (c) 2025 Computer Vision Center (CVC) at the Universitat Autonoma
+=======
+// Copyright (c) 2024 Computer Vision Center (CVC) at the Universitat Autonoma
+>>>>>>> f676339c2 (added template for defaultgame.ini)
 // de Barcelona (UAB).
 //
 // This work is licensed under the terms of the MIT license.
@@ -46,8 +50,12 @@ namespace element {
         _lane_change(LaneChange::None),
         _height(0.0),
         _type_name(""),
+<<<<<<< HEAD
         _type_width(0.0),
         _is_rht(true) {}
+=======
+        _type_width(0.0) {}
+>>>>>>> f676339c2 (added template for defaultgame.ini)
 
     RoadInfoMarkRecord(
         double s,
@@ -60,8 +68,12 @@ namespace element {
         LaneChange lane_change,
         double height,
         std::string type_name,
+<<<<<<< HEAD
         double type_width,
         bool is_rht)
+=======
+        double type_width)
+>>>>>>> f676339c2 (added template for defaultgame.ini)
       : RoadInfo(s),
         _road_mark_id(road_mark_id),
         _type(type),
@@ -72,8 +84,12 @@ namespace element {
         _lane_change(lane_change),
         _height(height),
         _type_name(type_name),
+<<<<<<< HEAD
         _type_width(type_width),
         _is_rht(is_rht) {}
+=======
+        _type_width(type_width) {}
+>>>>>>> f676339c2 (added template for defaultgame.ini)
 
     void AcceptVisitor(RoadInfoVisitor &v) final {
       v.Visit(*this);
@@ -133,10 +149,13 @@ namespace element {
       return _type_width;
     }
 
+<<<<<<< HEAD
     bool isRHT() const {
       return _is_rht;
     }
 
+=======
+>>>>>>> f676339c2 (added template for defaultgame.ini)
     std::vector<std::unique_ptr<RoadInfoMarkTypeLine>> &GetLines() {
       return _lines;
     }
@@ -163,8 +182,11 @@ namespace element {
 
     const double _type_width;
 
+<<<<<<< HEAD
     bool _is_rht;
 
+=======
+>>>>>>> f676339c2 (added template for defaultgame.ini)
     std::vector<std::unique_ptr<RoadInfoMarkTypeLine>> _lines;
   };
 

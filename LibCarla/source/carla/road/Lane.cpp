@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 // Copyright (c) 2025 Computer Vision Center (CVC) at the Universitat Autonoma
+=======
+// Copyright (c) 2024 Computer Vision Center (CVC) at the Universitat Autonoma
+>>>>>>> f676339c2 (added template for defaultgame.ini)
 // de Barcelona (UAB).
 //
 // This work is licensed under the terms of the MIT license.
@@ -195,7 +199,11 @@ namespace road {
         0.0f);
 
     // Fix the direction of the possitive lanes
+<<<<<<< HEAD
     if (!IsPositiveDirection()) {
+=======
+    if (GetId() > 0) {
+>>>>>>> f676339c2 (added template for defaultgame.ini)
       rot.yaw += 180.0f;
       rot.pitch = 360.0f - rot.pitch;
     }
@@ -263,6 +271,7 @@ namespace road {
     return std::make_pair(dp_r.location, dp_l.location);
   }
 
+<<<<<<< HEAD
   bool Lane::IsPositiveDirection() const {
     const auto *road = GetRoad();
     DEBUG_ASSERT(road != nullptr);
@@ -274,5 +283,7 @@ namespace road {
     return false;
   }
 
+=======
+>>>>>>> f676339c2 (added template for defaultgame.ini)
 } // road
 } // carla

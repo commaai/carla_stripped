@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 // Copyright (c) 2025 Computer Vision Center (CVC) at the Universitat Autonoma
+=======
+// Copyright (c) 2024 Computer Vision Center (CVC) at the Universitat Autonoma
+>>>>>>> f676339c2 (added template for defaultgame.ini)
 // de Barcelona (UAB).
 //
 // This work is licensed under the terms of the MIT license.
@@ -174,11 +178,18 @@ public:
       });
 
       /// Method to set % to keep on the right lane.
+<<<<<<< HEAD
       server->bind("set_percentage_keep_slow_lane_rule", [=](carla::rpc::Actor actor, const float percentage) {
         tm->SetKeepSlowLanePercentage(carla::client::detail::ActorVariant(actor).Get(tm->GetEpisodeProxy()), percentage);
       });
 
 
+=======
+      server->bind("set_percentage_keep_right_rule", [=](carla::rpc::Actor actor, const float percentage) {
+        tm->SetKeepRightPercentage(carla::client::detail::ActorVariant(actor).Get(tm->GetEpisodeProxy()), percentage);
+      });
+
+>>>>>>> f676339c2 (added template for defaultgame.ini)
       /// Method to set % to randomly do a left lane change.
       server->bind("set_percentage_random_left_lanechange", [=](carla::rpc::Actor actor, const float percentage) {
         tm->SetRandomLeftLaneChangePercentage(carla::client::detail::ActorVariant(actor).Get(tm->GetEpisodeProxy()), percentage);

@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 // Copyright (c) 2025 Computer Vision Center (CVC) at the Universitat Autonoma
+=======
+// Copyright (c) 2024 Computer Vision Center (CVC) at the Universitat Autonoma
+>>>>>>> f676339c2 (added template for defaultgame.ini)
 // de Barcelona (UAB).
 //
 // This work is licensed under the terms of the MIT license.
@@ -56,7 +60,10 @@ crp::CityObjectLabel ATagger::GetLabelByFolderName(const FString &String) {
   else if (String == "Train")        return crp::CityObjectLabel::Train;
   else if (String == "Rock")         return crp::CityObjectLabel::Rock;
   else if (String == "Stone")        return crp::CityObjectLabel::Rock;
+<<<<<<< HEAD
   else if (String == "Bush")         return crp::CityObjectLabel::Vegetation;
+=======
+>>>>>>> f676339c2 (added template for defaultgame.ini)
   else                               return crp::CityObjectLabel::None;
 }
 

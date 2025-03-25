@@ -4,8 +4,8 @@ set -e
 
 interactive=0
 skip_prerequisites=0
-launch=0
-python_root=
+launch=1
+python_root="$HOME/xx/.venv/bin"
 
 workspace_path="$(dirname $(realpath "${BASH_SOURCE[-1]}"))"
 echo "workspace_path=$workspace_path"
@@ -90,10 +90,14 @@ else
     git \
         -C $workspace_path/Unreal/CarlaUnreal/Content \
         clone \
+        --depth 1\
         -b ue5-dev \
         https://bitbucket.org/carla-simulator/carla-content.git \
         Carla
 fi
+
+# -- Copy additional map into Content
+cp $workspace_path/Extra\ Maps/stripped_2_Opt.umap $workspace_path/Unreal/CarlaUnreal/Content/Carla/Maps
 
 # -- DOWNLOAD + BUILD UNREAL ENGINE --
 if [ ! -z $CARLA_UNREAL_ENGINE_PATH ] && [ -d $CARLA_UNREAL_ENGINE_PATH ]; then
@@ -105,14 +109,14 @@ else
     pushd ..
     if [ -z "$GIT_LOCAL_CREDENTIALS" ]
     then
-        UE5_URL=https://github.com/CarlaUnreal/UnrealEngine.git
+        UE5_URL=git@github.com:CarlaUnreal/UnrealEngine.git
     else
         GIT_CREDENTIALS_INFO=(${GIT_LOCAL_CREDENTIALS//@/ })
         GIT_LOCAL_USER=${GIT_CREDENTIALS_INFO[0]}
         GIT_LOCAL_TOKEN=${GIT_CREDENTIALS_INFO[1]}
         UE5_URL=https://$GIT_LOCAL_USER:$GIT_LOCAL_TOKEN@github.com/CarlaUnreal/UnrealEngine.git
     fi
-    git clone -b ue5-dev-carla $UE5_URL UnrealEngine5_carla
+    git clone --depth 1 -b ue5-dev-carla $UE5_URL UnrealEngine5_carla
     pushd UnrealEngine5_carla
     echo -e '\n#CARLA UnrealEngine5\nexport CARLA_UNREAL_ENGINE_PATH='$PWD >> ~/.bashrc
     export CARLA_UNREAL_ENGINE_PATH=$PWD
@@ -136,13 +140,25 @@ cmake -G Ninja -S . -B Build \
     -DPython3_ROOT_DIR=${python_root} \
     -DCARLA_UNREAL_ENGINE_PATH=$CARLA_UNREAL_ENGINE_PATH
 echo "Building CARLA..."
-cmake --build Build
+sudo -E cmake --build Build
 echo "Installing Python API..."
-cmake --build Build --target carla-python-api-install
+sudo -E cmake --build Build --target carla-python-api-install
 echo "CARLA Python API build+install succeeded."
 
 # -- POST-BUILD STEPS --
 if [ $launch -eq 1 ]; then
-    echo "Launching Carla - Unreal Editor..."
-    cmake --build Build --target launch
+    N=3
+    n=1
+    while [ $n -le $N ]; do
+        echo "Attempt $n at Launching Carla - Unreal Editor..."
+	if sudo -E cmake --build Build --target launch; then
+	    echo "Build succeeded!"
+	    exit 0
+	else
+	    n=$((n+1))
+	fi
+   done
+   echo "Build failed after $N attempts."
+   exit 1
+
 fi

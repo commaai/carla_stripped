@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 // Copyright (c) 2025 Computer Vision Center (CVC) at the Universitat Autonoma
+=======
+// Copyright (c) 2024 Computer Vision Center (CVC) at the Universitat Autonoma
+>>>>>>> f676339c2 (added template for defaultgame.ini)
 // de Barcelona (UAB).
 //
 // This work is licensed under the terms of the MIT license.
@@ -60,12 +64,21 @@ namespace element {
     }
   }
 
+<<<<<<< HEAD
   static LaneMarking::LaneChange GetLaneChange(RoadInfoMarkRecord::LaneChange lane_change, bool isRHT) {
     switch (lane_change) {
       case RoadInfoMarkRecord::LaneChange::Increase:
         return isRHT ? LaneMarking::LaneChange::Right : LaneMarking::LaneChange::Left;
       case RoadInfoMarkRecord::LaneChange::Decrease:
         return isRHT ? LaneMarking::LaneChange::Left : LaneMarking::LaneChange::Right;
+=======
+  static LaneMarking::LaneChange GetLaneChange(RoadInfoMarkRecord::LaneChange lane_change) {
+    switch (lane_change) {
+      case RoadInfoMarkRecord::LaneChange::Increase:
+        return LaneMarking::LaneChange::Right;
+      case RoadInfoMarkRecord::LaneChange::Decrease:
+        return LaneMarking::LaneChange::Left;
+>>>>>>> f676339c2 (added template for defaultgame.ini)
       case RoadInfoMarkRecord::LaneChange::Both:
         return LaneMarking::LaneChange::Both;
       default:
@@ -76,7 +89,11 @@ namespace element {
   LaneMarking::LaneMarking(const RoadInfoMarkRecord &info)
     : type(GetType(info.GetType())),
       color(GetColor(info.GetColor())),
+<<<<<<< HEAD
       lane_change(GetLaneChange(info.GetLaneChange(), info.isRHT())),
+=======
+      lane_change(GetLaneChange(info.GetLaneChange())),
+>>>>>>> f676339c2 (added template for defaultgame.ini)
       width(info.GetWidth()) {}
 
 } // namespace element

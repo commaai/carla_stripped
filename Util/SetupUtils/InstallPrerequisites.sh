@@ -1,4 +1,8 @@
 #!/bin/bash
+<<<<<<< HEAD
+=======
+export PATH="$HOME/.local/bin:$PATH"
+>>>>>>> f676339c2 (added template for defaultgame.ini)
 
 set -e
 
@@ -56,17 +60,9 @@ apt-get -y install \
     git \
     git-lfs
 
-if [ "$python_path" == "python3" ]; then
-    apt-get -y install \
-        python3 \
-        python3-dev \
-        python3-pip
-fi
-
 # -- INSTALL PYTHON PACKAGES --
-echo "Installing Python Packages..."
-$python_path -m pip install --upgrade pip
-$python_path -m pip install -r requirements.txt
+echo "Installing Python Packages with UV..."
+uv pip install -r requirements.txt --python $python_path
 
 # -- INSTALL CMAKE --
 check_cmake_version() {

@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 // Copyright (c) 2025 Computer Vision Center (CVC) at the Universitat Autonoma
+=======
+// Copyright (c) 2024 Computer Vision Center (CVC) at the Universitat Autonoma
+>>>>>>> f676339c2 (added template for defaultgame.ini)
 // de Barcelona (UAB).
 //
 // This work is licensed under the terms of the MIT license.
@@ -8,6 +12,7 @@
 #include "Carla.h"
 
 #include <util/ue-header-guard-begin.h>
+<<<<<<< HEAD
 #include "Interfaces/IPluginManager.h"
 #include "Misc/Paths.h"
 #include "Modules/ModuleManager.h"
@@ -87,3 +92,23 @@ FString UCarlaStatics::FindMapPath(const FString &MapName)
 
   return FString();
 }
+=======
+#include "HAL/FileManagerGeneric.h"
+#include <util/ue-header-guard-end.h>
+
+TArray<FString> UCarlaStatics::GetAllMapNames()
+{
+  TArray<FString> TmpStrList, MapNameList;
+  IFileManager::Get().FindFilesRecursive(
+      MapNameList, *FPaths::ProjectContentDir(), TEXT("*.umap"), true, false, false);
+  MapNameList.RemoveAll( [](const FString &Name) { return Name.Contains("TestMaps");});
+  MapNameList.RemoveAll( [](const FString &Name) { return Name.Contains("OpenDriveMap");});
+  for (int i = 0; i < MapNameList.Num(); i++) {
+      MapNameList[i].ParseIntoArray(TmpStrList, TEXT("Content/"), true);
+      MapNameList[i] = TmpStrList[1];
+      MapNameList[i] = MapNameList[i].Replace(TEXT(".umap"), TEXT(""));
+      MapNameList[i] = "/Game/" + MapNameList[i];
+  }
+  return MapNameList;
+}
+>>>>>>> f676339c2 (added template for defaultgame.ini)

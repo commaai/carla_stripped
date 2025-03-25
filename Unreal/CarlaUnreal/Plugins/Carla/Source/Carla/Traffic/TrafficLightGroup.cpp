@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 // Copyright (c) 2025 Computer Vision Center (CVC) at the Universitat Autonoma
+=======
+// Copyright (c) 2024 Computer Vision Center (CVC) at the Universitat Autonoma
+>>>>>>> f676339c2 (added template for defaultgame.ini)
 // de Barcelona (UAB).
 //
 // This work is licensed under the terms of the MIT license.
@@ -14,7 +18,10 @@ ATrafficLightGroup::ATrafficLightGroup()
 {
   // Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
   PrimaryActorTick.bCanEverTick = true;
+<<<<<<< HEAD
   PrimaryActorTick.bStartWithTickEnabled = true;
+=======
+>>>>>>> f676339c2 (added template for defaultgame.ini)
   SceneComponent = CreateDefaultSubobject<USceneComponent>(TEXT("RootComponent"));
   RootComponent = SceneComponent;
 }
@@ -65,12 +72,15 @@ void ATrafficLightGroup::Tick(float DeltaTime)
     return;
   }
 
+<<<<<<< HEAD
   if (Controllers.Num() == 0)
   {
     UE_LOG(LogCarla, Error, TEXT("TrafficLightGroup::Tick() JunctionId=%d has NO CONTROLLERS!"), JunctionId);
     return;
   }
 
+=======
+>>>>>>> f676339c2 (added template for defaultgame.ini)
   UTrafficLightController* controller = Controllers[CurrentController];
   if (controller->AdvanceTimeAndCycleFinished(DeltaTime))
   {

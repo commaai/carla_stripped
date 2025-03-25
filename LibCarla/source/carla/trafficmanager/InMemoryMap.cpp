@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 // Copyright (c) 2025 Computer Vision Center (CVC) at the Universitat Autonoma
+=======
+// Copyright (c) 2024 Computer Vision Center (CVC) at the Universitat Autonoma
+>>>>>>> f676339c2 (added template for defaultgame.ini)
 // de Barcelona (UAB).
 //
 // This work is licensed under the terms of the MIT license.
@@ -260,8 +264,13 @@ namespace traffic_manager {
 
       // Ordering waypoints according to road direction.
       std::sort(segment_waypoints.begin(), segment_waypoints.end(), compare_s);
+<<<<<<< HEAD
       auto is_positive_direction = segment_waypoints.front()->GetWaypoint()->IsPositiveDirection();
       if (!is_positive_direction) {
+=======
+      auto lane_id = segment_waypoints.front()->GetWaypoint()->GetLaneId();
+      if (lane_id > 0) {
+>>>>>>> f676339c2 (added template for defaultgame.ini)
         std::reverse(segment_waypoints.begin(), segment_waypoints.end());
       }
 

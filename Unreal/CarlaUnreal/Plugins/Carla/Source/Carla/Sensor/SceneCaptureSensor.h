@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 // Copyright (c) 2025 Computer Vision Center (CVC) at the Universitat Autonoma
+=======
+// Copyright (c) 2024 Computer Vision Center (CVC) at the Universitat Autonoma
+>>>>>>> f676339c2 (added template for defaultgame.ini)
 // de Barcelona (UAB).
 //
 // This work is licensed under the terms of the MIT license.
@@ -24,11 +28,20 @@
 
 #include "SceneCaptureSensor.generated.h"
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> f676339c2 (added template for defaultgame.ini)
 class UDrawFrustumComponent;
 class UStaticMeshComponent;
 class UTextureRenderTarget2D;
 class APostProcessVolume;
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> f676339c2 (added template for defaultgame.ini)
 struct FCameraGBufferUint8
 {
   /// Prevent this sensor to be spawned by users.
@@ -70,6 +83,11 @@ struct FCameraGBufferUint8
   FDataStream Stream;
 };
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> f676339c2 (added template for defaultgame.ini)
 struct FCameraGBufferFloat
 {
   /// Prevent this sensor to be spawned by users.
@@ -110,6 +128,11 @@ struct FCameraGBufferFloat
   FDataStream Stream;
 };
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> f676339c2 (added template for defaultgame.ini)
 /// Base class for sensors using a USceneCaptureComponent2D for rendering the
 /// scene. This class does not capture data, use
 /// `FPixelReader::SendPixelsInRenderThread<FColor>(*this)` in derived classes.
@@ -128,17 +151,24 @@ class CARLA_API ASceneCaptureSensor : public ASensor
   friend class FPixelReader2;
 
 public:
+<<<<<<< HEAD
+=======
+
+>>>>>>> f676339c2 (added template for defaultgame.ini)
   ASceneCaptureSensor(const FObjectInitializer &ObjectInitializer);
 
   void Set(const FActorDescription &ActorDescription) override;
 
   void SetImageSize(uint32 Width, uint32 Height);
 
+<<<<<<< HEAD
   USceneCaptureComponent2D_CARLA *GetCaptureComponent() const
   {
     return CaptureComponent2D;
   }
   
+=======
+>>>>>>> f676339c2 (added template for defaultgame.ini)
   uint32 GetImageWidth() const
   {
     return ImageWidth;
@@ -192,6 +222,7 @@ public:
   }
 
   UFUNCTION(BlueprintCallable)
+<<<<<<< HEAD
   void SetBloomMethod(EBloomMethod Method);
 
   UFUNCTION(BlueprintCallable)
@@ -234,12 +265,15 @@ public:
   float GetAORadius() const;
 
   UFUNCTION(BlueprintCallable)
+=======
+>>>>>>> f676339c2 (added template for defaultgame.ini)
   void SetExposureMethod(EAutoExposureMethod Method);
 
   UFUNCTION(BlueprintCallable)
   EAutoExposureMethod GetExposureMethod() const;
 
   UFUNCTION(BlueprintCallable)
+<<<<<<< HEAD
   void SetLocalExposureMethod(ELocalExposureMethod Method);
 
   UFUNCTION(BlueprintCallable)
@@ -252,18 +286,23 @@ public:
   void SetBloomConvolutionTexture(UTexture2D *Texture);
 
   UFUNCTION(BlueprintCallable)
+=======
+>>>>>>> f676339c2 (added template for defaultgame.ini)
   void SetExposureCompensation(float Compensation);
 
   UFUNCTION(BlueprintCallable)
   float GetExposureCompensation() const;
 
   UFUNCTION(BlueprintCallable)
+<<<<<<< HEAD
   float GetDirtMaskIntensity() const;
 
   UFUNCTION(BlueprintCallable)
   void SetDirtMaskIntensity(float Intensity);
 
   UFUNCTION(BlueprintCallable)
+=======
+>>>>>>> f676339c2 (added template for defaultgame.ini)
   void SetShutterSpeed(float Speed);
 
   UFUNCTION(BlueprintCallable)
@@ -438,6 +477,7 @@ public:
   FVector4 GetColorSaturation() const;
 
   UFUNCTION(BlueprintCallable)
+<<<<<<< HEAD
   void SetColorSaturationMidtones(FVector4 ColorSaturation);
 
   UFUNCTION(BlueprintCallable)
@@ -450,12 +490,15 @@ public:
   FVector4 GetColorSaturationHighlights() const;
 
   UFUNCTION(BlueprintCallable)
+=======
+>>>>>>> f676339c2 (added template for defaultgame.ini)
   void SetColorContrast(FVector4 ColorContrast);
 
   UFUNCTION(BlueprintCallable)
   FVector4 GetColorContrast() const;
 
   UFUNCTION(BlueprintCallable)
+<<<<<<< HEAD
   void SetColorContrastMidtones(FVector4 ColorContrast);
 
   UFUNCTION(BlueprintCallable)
@@ -468,6 +511,8 @@ public:
   FVector4 GetColorContrastHighlights() const;
 
   UFUNCTION(BlueprintCallable)
+=======
+>>>>>>> f676339c2 (added template for defaultgame.ini)
   void SetColorGamma(FVector4 ColorGamma);
 
   UFUNCTION(BlueprintCallable)
@@ -510,7 +555,11 @@ public:
   float GetShadowContrastScale() const;
 
   virtual void UpdatePostProcessConfig(
+<<<<<<< HEAD
       FPostProcessConfig &InOutPostProcessConfig);
+=======
+    FPostProcessConfig& InOutPostProcessConfig);
+>>>>>>> f676339c2 (added template for defaultgame.ini)
 
   /// Use for debugging purposes only.
   UFUNCTION(BlueprintCallable)
@@ -544,8 +593,12 @@ public:
   void EnqueueRenderSceneImmediate();
 
   /// Blocks until the render thread has finished all it's tasks.
+<<<<<<< HEAD
   void WaitForRenderThreadToFinish()
   {
+=======
+  void WaitForRenderThreadToFinish() {
+>>>>>>> f676339c2 (added template for defaultgame.ini)
     TRACE_CPUPROFILER_EVENT_SCOPE(ASceneCaptureSensor::WaitForRenderThreadToFinish);
     // FlushRenderingCommands();
   }
@@ -568,6 +621,7 @@ public:
   } CameraGBuffers;
 
   UFUNCTION(BlueprintCallable)
+<<<<<<< HEAD
   static bool ApplyPostProcessVolumeToSensor(APostProcessVolume *Origin, ASceneCaptureSensor *Dest, bool bOverrideCurrentCamera = false);
 
 protected:
@@ -575,6 +629,15 @@ protected:
 
 #ifdef CARLA_HAS_GBUFFER_API
   virtual void SendGBufferTextures(FGBufferRequest &GBuffer);
+=======
+  static bool ApplyPostProcessVolumeToSensor(APostProcessVolume* Origin, ASceneCaptureSensor* Dest, bool bOverrideCurrentCamera = false);
+protected:
+
+  void CaptureSceneExtended();
+
+#ifdef CARLA_HAS_GBUFFER_API
+  virtual void SendGBufferTextures(FGBufferRequest& GBuffer);
+>>>>>>> f676339c2 (added template for defaultgame.ini)
 #endif
 
   virtual void BeginPlay() override;
@@ -614,6 +677,7 @@ protected:
   bool bEnable16BitFormat = false;
 
 private:
+<<<<<<< HEAD
 #ifdef CARLA_HAS_GBUFFER_API
   template <
       typename SensorT,
@@ -637,16 +701,51 @@ private:
       int32 SourcePitch;
       FIntPoint SourceExtent;
       GBufferData.MapTextureData(
+=======
+
+#ifdef CARLA_HAS_GBUFFER_API
+  template <
+    typename SensorT,
+    typename CameraGBufferT>
+  static void SendGBuffer(
+      SensorT& Self,
+      CameraGBufferT& CameraGBuffer,
+      FGBufferRequest& GBufferData,
+      EGBufferTextureID TextureID)
+  {
+      using PixelType = typename std::conditional<
+        std::is_same<std::remove_reference_t<CameraGBufferT>, FCameraGBufferUint8>::value,
+        FColor,
+        FLinearColor>::type;
+      FIntPoint ViewSize;
+      TArray<PixelType> Pixels;
+      if (GBufferData.WaitForTextureTransfer(TextureID))
+      {
+        TRACE_CPUPROFILER_EVENT_SCOPE_STR("GBuffer Decode");
+        void* PixelData;
+        int32 SourcePitch;
+        FIntPoint SourceExtent;
+        GBufferData.MapTextureData(
+>>>>>>> f676339c2 (added template for defaultgame.ini)
           TextureID,
           PixelData,
           SourcePitch,
           SourceExtent);
+<<<<<<< HEAD
       auto Format = GBufferData.Readbacks[(size_t)TextureID]->GetFormat();
       ViewSize = GBufferData.ViewRect.Size();
       Pixels.AddUninitialized(ViewSize.X * ViewSize.Y);
       FReadSurfaceDataFlags Flags = {};
       Flags.SetLinearToGamma(true);
       ImageUtil::DecodePixelsByFormat(
+=======
+        auto Format = GBufferData.Readbacks[(size_t)TextureID]->GetFormat();
+        ViewSize = GBufferData.ViewRect.Size();
+        Pixels.AddUninitialized(ViewSize.X * ViewSize.Y);
+        FReadSurfaceDataFlags Flags = {};
+        Flags.SetLinearToGamma(true);
+        ImageUtil::DecodePixelsByFormat(
+>>>>>>> f676339c2 (added template for defaultgame.ini)
           PixelData,
           SourcePitch,
           SourceExtent,
@@ -654,6 +753,7 @@ private:
           Format,
           Flags,
           Pixels);
+<<<<<<< HEAD
       GBufferData.UnmapTextureData(TextureID);
     }
     else
@@ -675,6 +775,28 @@ private:
     SCOPE_CYCLE_COUNTER(STAT_CarlaSensorStreamSend);
     TRACE_CPUPROFILER_EVENT_SCOPE_STR("Stream Send");
     GBufferStream.SerializeAndSend(
+=======
+        GBufferData.UnmapTextureData(TextureID);
+      }
+      else
+      {
+        ViewSize = GBufferData.ViewRect.Size();
+        Pixels.SetNum(ViewSize.X * ViewSize.Y);
+        for (auto& Pixel : Pixels)
+          Pixel = PixelType::Black;
+      }
+      auto GBufferStream = CameraGBuffer.GetDataStream(Self);
+      auto Buffer = GBufferStream.PopBufferFromPool();
+      Buffer.copy_from(
+        carla::sensor::SensorRegistry::get<CameraGBufferT*>::type::header_offset,
+        Pixels);
+      if (Buffer.empty()) {
+        return;
+      }
+      SCOPE_CYCLE_COUNTER(STAT_CarlaSensorStreamSend);
+      TRACE_CPUPROFILER_EVENT_SCOPE_STR("Stream Send");
+      GBufferStream.SerializeAndSend(
+>>>>>>> f676339c2 (added template for defaultgame.ini)
         CameraGBuffer,
         std::move(Buffer),
         ViewSize.X,
@@ -684,6 +806,7 @@ private:
 #endif
 
 protected:
+<<<<<<< HEAD
 #ifdef CARLA_HAS_GBUFFER_API
   template <typename T>
   void SendGBufferTexturesInternal(T &Self, FGBufferRequest &GBufferData)
@@ -695,6 +818,19 @@ protected:
         continue;
       }
       auto &C = CameraGBuffers;
+=======
+
+#ifdef CARLA_HAS_GBUFFER_API
+  template <typename T>
+  void SendGBufferTexturesInternal(T& Self, FGBufferRequest& GBufferData)
+  {
+    for (size_t i = 0; i != FGBufferRequest::TextureCount; ++i)
+    {
+      if ((GBufferData.DesiredTexturesMask & (UINT64_C(1) << i)) == 0) {
+        continue;
+      }
+      auto& C = CameraGBuffers;
+>>>>>>> f676339c2 (added template for defaultgame.ini)
       EGBufferTextureID ID = (EGBufferTextureID)i;
       switch (ID)
       {
@@ -738,9 +874,17 @@ protected:
         SendGBuffer(Self, C.CustomStencil, GBufferData, ID);
         break;
       default:
+<<<<<<< HEAD
         abort();
+=======
+          abort();
+>>>>>>> f676339c2 (added template for defaultgame.ini)
       }
     }
   }
 #endif
+<<<<<<< HEAD
+=======
+
+>>>>>>> f676339c2 (added template for defaultgame.ini)
 };

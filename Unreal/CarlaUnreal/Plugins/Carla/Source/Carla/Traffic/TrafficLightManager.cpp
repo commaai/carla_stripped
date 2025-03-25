@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 // Copyright (c) 2025 Computer Vision Center (CVC) at the Universitat Autonoma
+=======
+// Copyright (c) 2024 Computer Vision Center (CVC) at the Universitat Autonoma
+>>>>>>> f676339c2 (added template for defaultgame.ini)
 // de Barcelona (UAB).
 //
 // This work is licensed under the terms of the MIT license.
@@ -11,8 +15,11 @@
 #include "SpeedLimitComponent.h"
 #include "Components/BoxComponent.h"
 #include "Runtime/CoreUObject/Public/UObject/ConstructorHelpers.h"
+<<<<<<< HEAD
 #include "OpenDrive/OpenDrive.h"
 #include "OpenDrive/MapLogicParser.h"
+=======
+>>>>>>> f676339c2 (added template for defaultgame.ini)
 
 #include "UObject/ConstructorHelpers.h"
 
@@ -31,6 +38,7 @@ ATrafficLightManager::ATrafficLightManager()
   SceneComponent = CreateDefaultSubobject<USceneComponent>(TEXT("RootComponent"));
   RootComponent = SceneComponent;
 
+<<<<<<< HEAD
   // Hard coded default traffic light blueprint
   static ConstructorHelpers::FClassFinder<AActor> TrafficLightRHTFinder(
       TEXT( "/Game/Carla/Blueprints/TrafficLight/BP_TLOpenDrive_RHT" ) );
@@ -51,6 +59,19 @@ ATrafficLightManager::ATrafficLightManager()
   // Default traffic signs models
   static ConstructorHelpers::FClassFinder<AActor> StopFinder(
       TEXT( "/Game/Carla/Static/TrafficSign/BP_Stop01" ) );
+=======
+  // Hard codded default traffic light blueprint
+  static ConstructorHelpers::FClassFinder<AActor> TrafficLightFinder(
+      TEXT( "/Game/Carla/Blueprints/TrafficLight/BP_TLOpenDrive" ) );
+  if (TrafficLightFinder.Succeeded())
+  {
+    TSubclassOf<AActor> Model = TrafficLightFinder.Class;
+    TrafficLightModel = Model;
+  }
+  // Default traffic signs models
+  static ConstructorHelpers::FClassFinder<AActor> StopFinder(
+      TEXT( "/Game/Carla/Static/TrafficSign/BP_Stop" ) );
+>>>>>>> f676339c2 (added template for defaultgame.ini)
   if (StopFinder.Succeeded())
   {
     TSubclassOf<AActor> StopSignModel = StopFinder.Class;
@@ -58,7 +79,11 @@ ATrafficLightManager::ATrafficLightManager()
     SignComponentModels.Add(carla::road::SignalType::StopSign().c_str(), UStopSignComponent::StaticClass());
   }
   static ConstructorHelpers::FClassFinder<AActor> YieldFinder(
+<<<<<<< HEAD
       TEXT( "/Game/Carla/Static/TrafficSign/BP_Yield01" ) );
+=======
+      TEXT( "/Game/Carla/Static/TrafficSign/BP_Yield" ) );
+>>>>>>> f676339c2 (added template for defaultgame.ini)
   if (YieldFinder.Succeeded())
   {
     TSubclassOf<AActor> YieldSignModel = YieldFinder.Class;
@@ -199,6 +224,10 @@ void ATrafficLightManager::RegisterLightComponentFromOpenDRIVE(UTrafficLightComp
 
     auto *NewTrafficLightController = NewObject<UTrafficLightController>();
     NewTrafficLightController->SetControllerId(FString::FromInt(TrafficLightControllerMissingId));
+<<<<<<< HEAD
+=======
+    // Set red time longer than the default 2s
+>>>>>>> f676339c2 (added template for defaultgame.ini)
     NewTrafficLightController->SetRedTime(10);
     TrafficLightGroup->GetControllers().Add(NewTrafficLightController);
     TrafficControllers.Add(NewTrafficLightController->GetControllerId(), NewTrafficLightController);
@@ -208,8 +237,16 @@ void ATrafficLightManager::RegisterLightComponentFromOpenDRIVE(UTrafficLightComp
     --TrafficLightControllerMissingId;
   }
 
+<<<<<<< HEAD
   TrafficLightController->AddTrafficLight(TrafficLightComponent);
   TrafficLightController->ResetState();
+=======
+  // Add signal to controller
+  TrafficLightController->AddTrafficLight(TrafficLightComponent);
+  TrafficLightController->ResetState();
+
+  // Add signal to map
+>>>>>>> f676339c2 (added template for defaultgame.ini)
   TrafficSignComponents.Add(TrafficLightComponent->GetSignId(), TrafficLightComponent);
 
   TrafficLightGroup->ResetGroup();
@@ -264,7 +301,11 @@ void ATrafficLightManager::GenerateSignalsAndTrafficLights()
 {
   if(!TrafficLightsGenerated)
   {
+<<<<<<< HEAD
     if(!TrafficLightModel_RHT || !TrafficLightModel_LHT )
+=======
+    if(!TrafficLightModel)
+>>>>>>> f676339c2 (added template for defaultgame.ini)
     {
       UE_LOG(LogCarla, Error, TEXT("Missing TrafficLightModel"));
       return;
@@ -369,12 +410,18 @@ void ATrafficLightManager::MatchTrafficLightActorsWithOpenDriveSignals()
 
 void ATrafficLightManager::InitializeTrafficLights()
 {
+<<<<<<< HEAD
+=======
+
+  // Should not run in empty maps
+>>>>>>> f676339c2 (added template for defaultgame.ini)
   if (!GetMap())
   {
     carla::log_warning("Coud not generate traffic lights: missing map.");
     return;
   }
 
+<<<<<<< HEAD
   FString MapName = GetWorld()->GetMapName();
   FString XODRPath = UOpenDrive::FindPathToXODRFile(MapName);
   bool bHasMapLogic = false;
@@ -405,6 +452,11 @@ void ATrafficLightManager::InitializeTrafficLights()
   if (!XODRPath.IsEmpty() && bHasMapLogic)
   {
     UMapLogicParser::ApplyLaneIdsFromMapLogic(XODRPath, this);
+=======
+  if (!TrafficLightsGenerated)
+  {
+    GenerateSignalsAndTrafficLights();
+>>>>>>> f676339c2 (added template for defaultgame.ini)
   }
 }
 
@@ -579,11 +631,14 @@ void ATrafficLightManager::SpawnTrafficLights()
     }
     const auto& Signal = Signals.at(SignalId);
     auto CarlaTransform = Signal->GetTransform();
+<<<<<<< HEAD
     auto ClosestWaypointToSignal =
         GetMap()->GetClosestWaypointOnRoad(CarlaTransform.location);
 
     const bool IsRHT = GetMap()->GetLane(ClosestWaypointToSignal.value()).GetRoad()->IsRHT();
 
+=======
+>>>>>>> f676339c2 (added template for defaultgame.ini)
     FTransform SpawnTransform(CarlaTransform);
 
     FVector SpawnLocation = SpawnTransform.GetLocation();
@@ -599,8 +654,11 @@ void ATrafficLightManager::SpawnTrafficLights()
     SpawnParams.SpawnCollisionHandlingOverride =
         ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
     SpawnParams.OverrideLevel = GM->GetULevelFromName("TrafficLights");
+<<<<<<< HEAD
 
     auto TrafficLightModel = IsRHT ? TrafficLightModel_RHT : TrafficLightModel_LHT;
+=======
+>>>>>>> f676339c2 (added template for defaultgame.ini)
     ATrafficLightBase * TrafficLight = GetWorld()->SpawnActor<ATrafficLightBase>(
         TrafficLightModel,
         SpawnLocation,
@@ -612,6 +670,11 @@ void ATrafficLightManager::SpawnTrafficLights()
     UTrafficLightComponent *TrafficLightComponent = TrafficLight->GetTrafficLightComponent();
     TrafficLightComponent->SetSignId(SignalId.c_str());
 
+<<<<<<< HEAD
+=======
+    auto ClosestWaypointToSignal =
+        GetMap()->GetClosestWaypointOnRoad(CarlaTransform.location);
+>>>>>>> f676339c2 (added template for defaultgame.ini)
     if (ClosestWaypointToSignal)
     {
       auto SignalDistanceToRoad =

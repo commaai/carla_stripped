@@ -583,79 +583,8 @@ bool ASceneCaptureSensor::ApplyPostProcessVolumeToSensor(APostProcessVolume* Ori
   {
     return false;
   }
-
-  if(!bOverrideCurrentCamera)
-  {
-    //Cache postprocesssettings
-    float CacheGamma = Dest->GetTargetGamma();
-    EAutoExposureMethod CacheAutoExposureMethod = Dest->GetExposureMethod();
-    float CacheEC = Dest->GetExposureCompensation();
-    float CacheSS = Dest->GetShutterSpeed();
-    float CacheISO = Dest->GetISO();
-    float CacheA = Dest->GetAperture();
-    float CacheFD = Dest->GetFocalDistance();
-    float CacheDBA = Dest->GetDepthBlurAmount();
-    float CacheDBR = Dest->GetDepthBlurRadius();
-    float CacheBC = Dest->GetBladeCount();
-    float CacheDFMinFStop = Dest->GetDepthOfFieldMinFstop();
-    float CacheFS = Dest->GetFilmSlope();
-    float CacheFT = Dest->GetFilmToe();
-    float CacheFShoulder = Dest->GetFilmShoulder();
-    float CacheFBC = Dest->GetFilmBlackClip();
-    float CacheFWC = Dest->GetFilmWhiteClip();
-    float CacheEMinB = Dest->GetExposureMinBrightness();
-    float CacheEMaxB = Dest->GetExposureMaxBrightness();
-    float CacheESDown = Dest->GetExposureSpeedDown();
-    float CacheESUp = Dest->GetExposureSpeedUp();
-    float CacheCC = Dest->GetExposureCalibrationConstant();
-    float CacheMBI = Dest->GetMotionBlurIntensity();
-    float CacheMBMaxD = Dest->GetMotionBlurMaxDistortion();
-    float CacheMBMinOSS = Dest->GetMotionBlurMinObjectScreenSize();
-    float CacheLFI = Dest->GetLensFlareIntensity();
-    float CacheBI = Dest->GetBloomIntensity();
-    float CacheWTemp = Dest->GetWhiteTemp();
-    float CacheWTint = Dest->GetWhiteTint();
-    float CacheCAI = Dest->GetChromAberrIntensity();
-    float CacheCAO = Dest->GetChromAberrOffset();
-
-    Dest->CaptureComponent2D->PostProcessSettings = Origin->Settings;
   
-    Dest->SetTargetGamma(CacheGamma);
-    Dest->SetExposureMethod(CacheAutoExposureMethod);
-    Dest->SetExposureCompensation(CacheEC);
-    Dest->SetShutterSpeed(CacheSS);
-    Dest->SetISO(CacheISO);
-    Dest->SetAperture(CacheA);
-    Dest->SetFocalDistance(CacheFD);
-    Dest->SetDepthBlurAmount(CacheDBA);
-    Dest->SetDepthBlurRadius(CacheDBR);
-    Dest->SetBladeCount(CacheBC);
-    Dest->SetDepthOfFieldMinFstop(CacheDFMinFStop);
-    Dest->SetFilmSlope(CacheFS);
-    Dest->SetFilmToe(CacheFT);
-    Dest->SetFilmShoulder(CacheFShoulder);
-    Dest->SetFilmBlackClip(CacheFBC);
-    Dest->SetFilmWhiteClip(CacheFWC);
-    Dest->SetExposureMinBrightness(CacheEMinB);
-    Dest->SetExposureMaxBrightness(CacheEMaxB);
-    Dest->SetExposureSpeedDown(CacheESDown);
-    Dest->SetExposureSpeedUp(CacheESUp);
-    Dest->SetExposureCalibrationConstant(CacheCC);
-    Dest->SetMotionBlurIntensity(CacheMBI);
-    Dest->SetMotionBlurMaxDistortion(CacheMBMaxD);
-    Dest->SetMotionBlurMinObjectScreenSize(CacheMBMinOSS);
-    Dest->SetLensFlareIntensity(CacheLFI);
-    Dest->SetBloomIntensity(CacheBI);
-    Dest->SetWhiteTemp(CacheWTemp);
-    Dest->SetWhiteTint(CacheWTint);
-    Dest->SetChromAberrIntensity(CacheCAI);
-    Dest->SetChromAberrOffset(CacheCAO);
-  }
-  else
-  {
-    Dest->CaptureComponent2D->PostProcessSettings = Origin->Settings;
-  }
-
+  Dest->CaptureComponent2D->PostProcessSettings = Origin->Settings;
   return true;
 }
 
@@ -674,7 +603,7 @@ void ASceneCaptureSensor::BeginPlay()
   using namespace SceneCaptureSensor_local_ns;
 
   // Determine the gamma of the player.
-  const bool bInForceLinearGamma = !bEnablePostProcessingEffects;
+  const bool bInForceLinearGamma = false; // disable forced linear gamma
 
   CaptureRenderTarget->InitCustomFormat(
       ImageWidth,
@@ -684,7 +613,7 @@ void ASceneCaptureSensor::BeginPlay()
 
   if (bEnablePostProcessingEffects)
   {
-    CaptureRenderTarget->TargetGamma = TargetGamma;
+    CaptureRenderTarget->TargetGamma = 2.2f; // match spectator gamma
   }
 
   check(IsValid(CaptureComponent2D) && IsValidChecked(CaptureComponent2D));
@@ -714,8 +643,23 @@ void ASceneCaptureSensor::BeginPlay()
   CaptureComponent2D->ShowFlags = PostProcessConfig.EngineShowFlags;
   CaptureComponent2D->PostProcessSettings = PostProcessConfig.PostProcessSettings;
 
-  if (ImageWidth < 1920 || ImageHeight < 1080)
-    CaptureComponent2D->ShowFlags.SetMotionBlur(false);
+ // Apply the scene's post-process volume to match the spectator view
+  APostProcessVolume* PostProcessVolume = nullptr;
+  for (TActorIterator<APostProcessVolume> It(GetWorld()); It; ++It)
+  {
+    PostProcessVolume = *It;
+    break;  // Use the first post-process volume found
+  }
+  if (PostProcessVolume)
+  {
+    ApplyPostProcessVolumeToSensor(PostProcessVolume, this, true);
+  }
+
+  // Enable motion blur regardless of resolution to match spectator view
+  CaptureComponent2D->ShowFlags.SetMotionBlur(true);
+
+  // Enable TAA for smoother edges, matching spectator view
+  CaptureComponent2D->ShowFlags.TemporalAA = true;
   
   // This ensures the camera is always spawning the raindrops in case the
   // weather was previously set to have rain.
@@ -814,28 +758,12 @@ void ASceneCaptureSensor::CaptureSceneExtended()
     Prior = GBufferPtr->DesiredTexturesMask;
     GBufferPtr->OwningActor = CaptureComponent2D->GetViewOwner();
 
-#define CARLA_GBUFFER_DISABLE_TAA // Temporarily disable TAA to avoid jitter.
-
-#ifdef CARLA_GBUFFER_DISABLE_TAA
-    bool bTAA = CaptureComponent2D->ShowFlags.TemporalAA;
-    if (bTAA) {
-        CaptureComponent2D->ShowFlags.TemporalAA = false;
-    }
-#endif
-
     CaptureComponent2D->CaptureSceneWithGBuffer(GBuffer);
 
-#ifdef CARLA_GBUFFER_DISABLE_TAA
-    if (bTAA) {
-        CaptureComponent2D->ShowFlags.TemporalAA = true;
-    }
-#undef CARLA_GBUFFER_DISABLE_TAA
-#endif
-
     AsyncTask(ENamedThreads::AnyHiPriThreadNormalTask, [this, GBuffer = MoveTemp(GBufferPtr)]() mutable
-        {
-            SendGBufferTextures(*GBuffer);
-        });
+    {
+      SendGBufferTextures(*GBuffer);
+    });
 }
 
 void ASceneCaptureSensor::SendGBufferTextures(FGBufferRequest& GBuffer)

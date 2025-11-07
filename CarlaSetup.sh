@@ -76,7 +76,7 @@ if [ $skip_prerequisites -eq 0 ]; then
         python_path=${python_root}/python3
     fi
     echo "Installing prerequisites..."
-    sudo -E bash -x Util/SetupUtils/InstallPrerequisites.sh --python-path=$python_path
+    bash -x Util/SetupUtils/InstallPrerequisites.sh --python-path=$python_path
 else
     echo "Skipping prerequisites install step."
 fi
@@ -140,18 +140,18 @@ cmake -G Ninja -S . -B Build \
     -DPython3_ROOT_DIR=${python_root} \
     -DCARLA_UNREAL_ENGINE_PATH=$CARLA_UNREAL_ENGINE_PATH
 echo "Building CARLA..."
-sudo -E cmake --build Build
+cmake --build Build
 echo "Installing Python API..."
-sudo -E cmake --build Build --target carla-python-api-install
+cmake --build Build --target carla-python-api-install
 echo "CARLA Python API build+install succeeded."
 
 # -- POST-BUILD STEPS --
 if [ $launch -eq 1 ]; then
-    N=3
+    N=1
     n=1
     while [ $n -le $N ]; do
         echo "Attempt $n at Launching Carla - Unreal Editor..."
-	if sudo -E cmake --build Build --target launch; then
+	if cmake --build Build --target launch; then
 	    echo "Build succeeded!"
 	    exit 0
 	else

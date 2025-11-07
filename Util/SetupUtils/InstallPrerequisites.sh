@@ -61,8 +61,8 @@ apt-get -y install \
     git-lfs
 
 # -- INSTALL PYTHON PACKAGES --
-echo "Installing Python Packages with UV..."
-uv pip install -r requirements.txt --python $python_path
+echo "Installing Python Packages..."
+pip install -r requirements.txt
 
 # -- INSTALL CMAKE --
 check_cmake_version() {

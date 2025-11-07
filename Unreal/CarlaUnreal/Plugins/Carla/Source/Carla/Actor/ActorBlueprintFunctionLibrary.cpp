@@ -806,7 +806,7 @@ void UActorBlueprintFunctionLibrary::MakeCameraDefinition(
     FActorVariation ColorSaturation;
     ColorSaturation.Id = TEXT("color_saturation");
     ColorSaturation.Type = EActorAttributeType::RGBColor;
-    ColorSaturation.RecommendedValues = { ColorToFString(FLinearColor(0.5f, 0.5f, 0.5f).ToFColorSRGB()) };
+    ColorSaturation.RecommendedValues = { ColorToFString(FLinearColor(0.5f, 0.5f, 0.5f, 1.0f).ToFColorSRGB()) };
     ColorSaturation.bRestrictToRecommended = false;
 
     FActorVariation ColorContrast;

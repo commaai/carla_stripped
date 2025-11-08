@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 // Copyright (c) 2025 Computer Vision Center (CVC) at the Universitat Autonoma
-=======
-// Copyright (c) 2024 Computer Vision Center (CVC) at the Universitat Autonoma
->>>>>>> f676339c2 (added template for defaultgame.ini)
 // de Barcelona (UAB).
 //
 // This work is licensed under the terms of the MIT license.
@@ -317,15 +313,11 @@ void UBoundingBoxCalculator::GetISMBoundingBox(
 
   if(!Mesh)
   {
-<<<<<<< HEAD
   #if WITH_EDITOR
     UE_LOG(LogCarla, Error, TEXT("Actor Name: %s Actor Labe: %s has no SM assigned to the ISM"), *ISMComp->GetOwner()->GetName(), *ISMComp->GetOwner()->GetActorLabel());
   #else
     UE_LOG(LogCarla, Error, TEXT("Actor Name: %s has no SM assigned to the ISM"), *ISMComp->GetOwner()->GetName());
   #endif
-=======
-    UE_LOG(LogCarla, Error, TEXT("%s has no SM assigned to the ISM"), *ISMComp->GetOwner()->GetName());
->>>>>>> f676339c2 (added template for defaultgame.ini)
     return;
   }
 

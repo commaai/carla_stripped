@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 // Copyright (c) 2025 Computer Vision Center (CVC) at the Universitat Autonoma
-=======
-// Copyright (c) 2024 Computer Vision Center (CVC) at the Universitat Autonoma
->>>>>>> f676339c2 (added template for defaultgame.ini)
 // de Barcelona (UAB).
 //
 // This work is licensed under the terms of the MIT license.
@@ -18,11 +14,7 @@ struct CARLA_API FWeatherParameters
   GENERATED_BODY()
 
   UPROPERTY(EditAnywhere, BlueprintReadWrite, meta=(ClampMin = "0.0", ClampMax = "100.0", UIMin = "0.0", UIMax = "100.0"))
-<<<<<<< HEAD
   float Cloudiness = 0.0f;
-=======
-  float Cloudiness = 100.0f;
->>>>>>> f676339c2 (added template for defaultgame.ini)
 
   UPROPERTY(EditAnywhere, BlueprintReadWrite, meta=(ClampMin = "0.0", ClampMax = "100.0", UIMin = "0.0", UIMax = "100.0"))
   float Precipitation = 0.0f;

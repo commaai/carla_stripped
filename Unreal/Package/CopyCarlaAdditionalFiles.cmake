@@ -40,11 +40,10 @@ file (COPY ${PYTHON_UTIL_FILES} DESTINATION ${CARLA_PACKAGE_ARCHIVE_PATH}/Python
 file (COPY_FILE ${CARLA_WORKSPACE_PATH}/PythonAPI/util/requirements.txt ${CARLA_PACKAGE_ARCHIVE_PATH}/PythonAPI/util/requirements.txt)
 file (COPY ${CARLA_WORKSPACE_PATH}/PythonAPI/util/opendrive/ DESTINATION ${CARLA_PACKAGE_ARCHIVE_PATH}/PythonAPI/util/opendrive/)
 
-<<<<<<< HEAD
-=======
+
 file (COPY_FILE ${CARLA_WORKSPACE_PATH}/Unreal/CarlaUnreal/Config/DefaultEngineTemplate.txt ${CARLA_PACKAGE_ARCHIVE_PATH}/Linux/CarlaUnreal/Config/DefaultEngineTemplate.txt)
 
->>>>>>> f676339c2 (added template for defaultgame.ini)
+
 # file (COPY ${CARLA_WORKSPACE_PATH}/Co-Simulation/ DESTINATION ${CARLA_PACKAGE_ARCHIVE_PATH}/Co-Simulation/)
 
 # make_directory (${CARLA_PACKAGE_ARCHIVE_PATH}/HDMaps/)

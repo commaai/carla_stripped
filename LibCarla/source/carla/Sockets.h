@@ -16,8 +16,4 @@
   #include <unistd.h>     ///< close
 #endif
 
-<<<<<<< HEAD
 #define SOCK_INVALID_INDEX  -1
-=======
-#define SOCK_INVALID_INDEX  -1
->>>>>>> f676339c2 (added template for defaultgame.ini)

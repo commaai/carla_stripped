@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 // Copyright (c) 2025 Computer Vision Center (CVC) at the Universitat Autonoma
-=======
-// Copyright (c) 2024 Computer Vision Center (CVC) at the Universitat Autonoma
->>>>>>> f676339c2 (added template for defaultgame.ini)
 // de Barcelona (UAB).
 //
 // This work is licensed under the terms of the MIT license.
@@ -51,16 +47,9 @@ void UTrafficLightComponent::InitializeSign(const carla::road::Map &Map)
         if(opt_signal_waypoint){
           signal_waypoint = opt_signal_waypoint.value();
         }else{
-<<<<<<< HEAD
           continue;
         }
 
-=======
-          UE_LOG(LogCarla, Error, TEXT("signal_waypoint is not valid") );
-          continue;
-        }
-        // Prevent adding the bounding box inside the intersection
->>>>>>> f676339c2 (added template for defaultgame.ini)
         if (Map.IsJunction(RoadId)) {
           auto predecessors = Map.GetPredecessors(signal_waypoint);
           if (predecessors.size() == 1) {
@@ -74,7 +63,6 @@ void UTrafficLightComponent::InitializeSign(const carla::road::Map &Map)
         if(Map.GetLane(signal_waypoint).GetType() != cr::Lane::LaneType::Driving)
           continue;
 
-<<<<<<< HEAD
         float BoxWidth = static_cast<float>(0.5f*Map.GetLaneWidth(signal_waypoint)*0.5);
         float BoxLength = 1.5f;
         float BoxHeight = 1.0f;
@@ -82,21 +70,6 @@ void UTrafficLightComponent::InitializeSign(const carla::road::Map &Map)
         BoxWidth = std::max(0.01f, BoxWidth);
         double LaneLength = Map.GetLane(signal_waypoint).GetLength();
         double LaneDistance = Map.GetLane(signal_waypoint).GetDistance();
-=======
-        // Get 50% of the half size of the width of the lane
-        float BoxWidth = static_cast<float>(
-            0.5f*Map.GetLaneWidth(signal_waypoint)*0.5);
-        float BoxLength = 1.5f;
-        float BoxHeight = 1.0f;
-
-        // Prevent a situation where the road width is 0,
-        // this could happen in a lane that is just appearing
-        BoxWidth = std::max(0.01f, BoxWidth);
-        // Get min and max
-        double LaneLength = Map.GetLane(signal_waypoint).GetLength();
-        double LaneDistance = Map.GetLane(signal_waypoint).GetDistance();
-        // Safe distance to avoid overlapping the bounding box with the intersection
->>>>>>> f676339c2 (added template for defaultgame.ini)
         float AdditionalDistance = 1.5f;
         if(lane < 0)
         {

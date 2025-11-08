@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 // Copyright (c) 2025 Computer Vision Center (CVC) at the Universitat Autonoma
-=======
-// Copyright (c) 2024 Computer Vision Center (CVC) at the Universitat Autonoma
->>>>>>> f676339c2 (added template for defaultgame.ini)
 // de Barcelona (UAB).
 //
 // This work is licensed under the terms of the MIT license.
@@ -54,14 +50,8 @@ protected:
 
   UPROPERTY(EditAnywhere)
   TArray<FActorDefinition> Definitions;
-<<<<<<< HEAD
   UPROPERTY(EditAnywhere, BlueprintReadWrite)
   TArray<FVehicleParameters> VehiclesParams;
   UPROPERTY(EditAnywhere, BlueprintReadWrite)
-=======
-  UPROPERTY(EditAnywhere)
-  TArray<FVehicleParameters> VehiclesParams;
-  UPROPERTY(EditAnywhere)
->>>>>>> f676339c2 (added template for defaultgame.ini)
   TArray<FVehicleParameters> MineVehiclesParams;
 };

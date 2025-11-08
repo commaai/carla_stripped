@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 // Copyright (c) 2025 Computer Vision Center (CVC) at the Universitat Autonoma
-=======
-// Copyright (c) 2024 Computer Vision Center (CVC) at the Universitat Autonoma
->>>>>>> f676339c2 (added template for defaultgame.ini)
 // de Barcelona (UAB).
 //
 // This work is licensed under the terms of the MIT license.
@@ -84,10 +80,8 @@ namespace parser {
             type_width = road_mark_type.attribute("width").as_double();
           }
 
-<<<<<<< HEAD
           bool is_rht = lane->GetRoad()->IsRHT();
-=======
->>>>>>> f676339c2 (added template for defaultgame.ini)
+
           // Call map builder for LaneRoadMark
           map_builder.CreateRoadMark(
               lane,
@@ -101,12 +95,8 @@ namespace parser {
               lane_change,
               height,
               type_name,
-<<<<<<< HEAD
               type_width,
               is_rht);
-=======
-              type_width);
->>>>>>> f676339c2 (added template for defaultgame.ini)
         }
 
         for (pugi::xml_node road_mark_type_line_node : road_mark_type.children("line")) {

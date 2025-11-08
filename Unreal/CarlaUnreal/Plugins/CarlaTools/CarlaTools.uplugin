@@ -39,7 +39,6 @@
     {
       "Name": "ChaosVehiclesPlugin",
       "Enabled": true
-<<<<<<< HEAD
     },
     {
       "Name": "PCG",
@@ -47,8 +46,3 @@
     }
   ]
 }
-=======
-    }
-  ]
-}
->>>>>>> f676339c2 (added template for defaultgame.ini)

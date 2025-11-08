@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 // Copyright (c) 2025 Computer Vision Center (CVC) at the Universitat Autonoma
-=======
-// Copyright (c) 2024 Computer Vision Center (CVC) at the Universitat Autonoma
->>>>>>> f676339c2 (added template for defaultgame.ini)
 // de Barcelona (UAB).
 //
 // This work is licensed under the terms of the MIT license.
@@ -109,7 +105,6 @@ FCarlaActor* FActorRegistry::Register(AActor &Actor, FActorDescription Descripti
   }
   Ids.Emplace(&Actor, Id);
 
-<<<<<<< HEAD
 // Add the actor description to the Unreal actor as TAGs
 
   for (const auto& Elem : Description.Variations)
@@ -122,8 +117,6 @@ FCarlaActor* FActorRegistry::Register(AActor &Actor, FActorDescription Descripti
       Actor.Tags.Add(FName(*TagString));
   }
 
-=======
->>>>>>> f676339c2 (added template for defaultgame.ini)
   TSharedPtr<FCarlaActor> View =
       MakeCarlaActor(Id, Actor, std::move(Description), crp::ActorState::Active);
 

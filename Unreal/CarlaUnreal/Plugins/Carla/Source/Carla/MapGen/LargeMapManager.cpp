@@ -1,10 +1,4 @@
-<<<<<<< HEAD
 // Copyright (c) 2025 Computer Vision Center (CVC) at the Universitat Autonoma de Barcelona (UAB).
-=======
-// Copyright (c) 2024 Computer Vision Center (CVC) at the Universitat Autonoma de Barcelona (UAB).
->>>>>>> f676339c2 (added template for defaultgame.ini)
-// This work is licensed under the terms of the MIT license.
-// For a copy, see <https://opensource.org/licenses/MIT>.
 
 #include "LargeMapManager.h"
 
@@ -634,7 +628,6 @@ FCarlaMapTile& ALargeMapManager::GetCarlaMapTile(FIntVector TileVectorID)
   return *Tile;
 }
 
-<<<<<<< HEAD
 FCarlaMapTile* ALargeMapManager::GetCarlaMapTilePointer(FIntVector TileVectorID)
 {
   TileID TileID = GetTileID(TileVectorID);
@@ -642,8 +635,6 @@ FCarlaMapTile* ALargeMapManager::GetCarlaMapTilePointer(FIntVector TileVectorID)
   return Tile;
 }
 
-=======
->>>>>>> f676339c2 (added template for defaultgame.ini)
 FCarlaMapTile* ALargeMapManager::GetCarlaMapTile(TileID TileID)
 {
   FCarlaMapTile* Tile = MapTiles.Find(TileID);

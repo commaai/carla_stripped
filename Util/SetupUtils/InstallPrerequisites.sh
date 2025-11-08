@@ -1,9 +1,5 @@
 #!/bin/bash
-<<<<<<< HEAD
-=======
 export PATH="$HOME/.local/bin:$PATH"
->>>>>>> f676339c2 (added template for defaultgame.ini)
-
 set -e
 
 python_path_default='python3'

@@ -112,7 +112,6 @@ public class CarlaTools :
       // "StreetMapImporting",
       // "StreetMapRuntime",
       "Chaos",
-<<<<<<< HEAD
       "ChaosVehicles",
       "AssetTools",
       "UnrealEd",
@@ -122,9 +121,6 @@ public class CarlaTools :
       "MeshUtilitiesCommon",
       "Projects",
       "PCG"
-=======
-      "ChaosVehicles"
->>>>>>> f676339c2 (added template for defaultgame.ini)
     });
 
     if (EnableNVIDIAOmniverse)

@@ -119,7 +119,7 @@ carla_option (
 carla_option (
   ENABLE_WARNINGS_TO_ERRORS
   "Whether to convert build warnings to errors."
-  OFF
+  ON
 )
 
 carla_string_option (
@@ -131,13 +131,13 @@ carla_string_option (
 carla_option (
   VERBOSE_CONFIGURE
   "Whether to emit extra messages during CMake configure."
-  OFF
+  ON
 )
 
 carla_option (
   ENABLE_STREETMAP
   "Whether to download the Streetmap UE plugin."
-  ON
+  OFF
 )
 
 
@@ -202,21 +202,10 @@ if (BUILD_CARLA_UNREAL)
   endif ()
 endif ()
 
-carla_option (
-  CARLA_UNREAL_LOG_WINDOW
-  "Whether to open a terminal window along the Unreal editor."
-  ON
-)
-
-set (CARLA_LAUNCH_ARGS_DEFAULT)
-if (CARLA_UNREAL_LOG_WINDOW)
-  list (APPEND CARLA_LAUNCH_ARGS_DEFAULT -log)
-endif ()
-
 carla_string_option (
   CARLA_LAUNCH_ARGS
   "CMake-style semicolon-separated list of arguments to pass when launching the Unreal Editor with CARLA."
-  "${CARLA_LAUNCH_ARGS_DEFAULT}"
+  ""
 )
 
 carla_string_option (
@@ -228,11 +217,11 @@ carla_string_option (
 # Docs for UE5 build configurations:
 # https://docs.unrealengine.com/4.27/en-US/ProductionPipelines/DevelopmentSetup/BuildConfigurations/
 
-if (${CMAKE_BUILD_TYPE} STREQUAL "Debug")
+if ("${CMAKE_BUILD_TYPE}" STREQUAL "Debug")
   set (CARLA_UNREAL_PACKAGE_BUILD_TYPE_DEFAULT Debug)
-elseif (${CMAKE_BUILD_TYPE} STREQUAL "RelWithDebInfo")
+elseif ("${CMAKE_BUILD_TYPE}" STREQUAL "RelWithDebInfo")
   set (CARLA_UNREAL_PACKAGE_BUILD_TYPE_DEFAULT Development)
-elseif (${CMAKE_BUILD_TYPE} STREQUAL "Release")
+elseif ("${CMAKE_BUILD_TYPE}" STREQUAL "Release")
   set (CARLA_UNREAL_PACKAGE_BUILD_TYPE_DEFAULT Shipping)
 else ()
   carla_warning("Unexpected CMAKE_BUILD_TYPE \"${CMAKE_BUILD_TYPE}\". Unreal packages will default to Development. Manually override DEFAULT_PACKAGE_CONFIGURATION if this behavior is not desired.")
@@ -243,18 +232,6 @@ carla_string_option (
   CARLA_UNREAL_PACKAGE_BUILD_TYPE
   "Set the default CARLA package build configuration."
   "${CARLA_UNREAL_PACKAGE_BUILD_TYPE_DEFAULT}"
-)
-
-if ("${CARLA_UNREAL_PACKAGE_BUILD_TYPE}" STREQUAL "Shipping")
-  set (CARLA_UNREAL_PACKAGE_NO_COMPRESSION_DEFAULT OFF)
-else ()
-  set (CARLA_UNREAL_PACKAGE_NO_COMPRESSION_DEFAULT ON)
-endif ()
-
-carla_option (
-  CARLA_UNREAL_PACKAGE_NO_COMPRESSION
-  "Whether to skip the package compression step."
-  ${CARLA_UNREAL_PACKAGE_NO_COMPRESSION_DEFAULT}
 )
 
 
@@ -307,9 +284,6 @@ carla_string_option (
 
 # ==== LIBPNG ====
 
-# We can not upgrade any further due to ZLIB.
-# See https://github.com/madler/zlib/issues/1019
-# Once this is resolved we can target 1.6.50
 carla_string_option (
   CARLA_LIBPNG_VERSION
   "Target libpng version."
@@ -327,7 +301,7 @@ carla_string_option (
 carla_string_option (
   CARLA_PROJ_VERSION
   "Target PROJ version."
-  9.7.0
+  7.2.1
 )
 
 carla_string_option (
@@ -357,13 +331,7 @@ carla_string_option (
 carla_string_option (
   CARLA_SQLITE_VERSION
   "Target SQLite version (major[1].minor[2].patch[2].revision[2])."
-  3.50.04.00
-)
-
-carla_string_option (
-  CARLA_SQLITE_RELEASE_YEAR
-  "Year corresponding to the target SQLite release."
-  2025
+  3.45.01.00
 )
 
 # ==== XERCESC ====
@@ -371,7 +339,7 @@ carla_string_option (
 carla_string_option (
   CARLA_XERCESC_VERSION
   "Target xerces-c version."
-  3.3.0
+  3.2.4
 )
 
 carla_string_option (
@@ -427,7 +395,7 @@ carla_string_option (
 carla_string_option (
   CARLA_STREETMAP_VERSION
   "Target StreetMap version."
-  ue5-dev-carla
+  ue5.3
 )
 
 carla_string_option (
@@ -447,7 +415,7 @@ carla_string_option (
 carla_string_option (
   CARLA_FASTDDS_TAG
   "Target Fast-DDS git tag."
-  v${CARLA_FASTDDS_VERSION}
+  ${CARLA_FASTDDS_VERSION}
 )
 
 # ==== FASTCDR ====

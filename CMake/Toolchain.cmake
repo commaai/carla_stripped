@@ -9,6 +9,7 @@
 ]]
 
 if (LINUX)
+add_compile_options(-D_LIBCPP_DISABLE_ISOC23)
 set (UE_ROOT $ENV{CARLA_UNREAL_ENGINE_PATH})
 
 if (NOT UE_ROOT)

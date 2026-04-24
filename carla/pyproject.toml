@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=64", "wheel", 'tomli; python_version < "3.11"']
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "carla"
+version = "0.10.0"
+description = "CARLA simulator Python bindings (pre-built shim — downloads wheel from GitHub release at install time)"
+requires-python = ">=3.12"
+
+[tool.setuptools.packages.find]
+include = ["carla*"]
+
+[tool.setuptools.package-data]
+carla = ["*.so"]
+
+[tool.shim]
+repo_url = "https://github.com/commaai/carla_stripped"
+tag = "simulator-2"
+wheel_tag = "cp312-cp312"

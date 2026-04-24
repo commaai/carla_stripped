@@ -1,8 +1,7 @@
-"""Shim package: re-export the native CARLA extension's public surface.
+"""Shim package for the prebuilt CARLA extension.
 
-The published wheel ships `carla.cpython-*.so` as a top-level single-file extension. The shim
-at build time extracts it as `_carla.cpython-*.so` inside this package; this `__init__.py`
-delegates to it so `import carla; carla.Client(...)` works as if users had installed the
-original wheel.
+The native module lives at `carla/carla.cpython-*.so` (a submodule whose PyInit_carla is
+called when loaded as `carla.carla`). Re-export its public surface so users can do
+`import carla; carla.Client(...)` as if they'd installed the original wheel.
 """
-from ._carla import *  # noqa: F401, F403
+from .carla import *  # noqa: F401, F403

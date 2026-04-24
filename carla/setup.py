@@ -66,13 +66,12 @@ class InstallPrebuilt(build_py):
     print("Extracting native .so ...")
     with zipfile.ZipFile(BytesIO(raw)) as zf:
       for info in zf.infolist():
-        # The wheel has `carla.cpython-XXX-x86_64-linux-gnu.so` at its root. Rename to
-        # `_carla.cpython-XXX-x86_64-linux-gnu.so` inside our shim's carla/ package dir so the
-        # __init__.py can do `from ._carla import *`.
+        # Preserve the .so's filename — PyInit_carla is baked in at compile time, so the file
+        # must be loaded as a module named `carla`. Drop it into our shim's carla/ package dir
+        # unchanged; it becomes the submodule `carla.carla` (whose PyInit is PyInit_carla).
         name = info.filename
         if name.startswith(f"{MODULE}.") and name.endswith(".so"):
-          renamed = "_" + name
-          dest = os.path.join(module_dir, renamed)
+          dest = os.path.join(module_dir, name)
           with open(dest, "wb") as f:
             f.write(zf.read(info))
           if info.external_attr >> 16 & 0o111:

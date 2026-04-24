@@ -15,10 +15,7 @@ from io import BytesIO
 from urllib.error import URLError
 from urllib.request import urlopen
 
-try:
-  import tomllib
-except ImportError:
-  import tomli as tomllib  # type: ignore[no-redef]
+import tomllib
 
 from setuptools import setup
 from setuptools.command.build_py import build_py
